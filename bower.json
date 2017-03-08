@@ -1,0 +1,20 @@
+{
+  "name": "scrumproyect",
+  "description": "",
+  "main": "",
+  "authors": [
+    "edgarOPG <eopg95@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/EdgarOPG/ScrumProyect",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
