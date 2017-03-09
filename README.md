@@ -11,3 +11,9 @@ First of all to install depedencies run on terminal:
 To run the express server use:
 
 `node start`
+
+This proyect was generaded by express-generator, also it use:
+- Bootstrap
+- Bootstrap-social 
+- Pug
+- FontAwesome
