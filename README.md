@@ -1,8 +1,8 @@
 # ScrumProyect
 
 ## Collaborators:
-- Alejandro Antonio Orduño López
-- Edgar Omar Peinado García
+- [Alejandro Antonio Orduño López](https://github.com/AlexOrdu)
+- [Edgar Omar Peinado García](https://github.com/EdgarOPG)
 
 First of all to install depedencies run on terminal:
 
