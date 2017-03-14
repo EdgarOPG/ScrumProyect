@@ -1,0 +1,77 @@
+extends navbar
+
+block content
+  h1.page-header Proyect Name
+  // /.col-lg-12
+  // /.row
+  .row
+  .col-lg-12
+  .panel.panel-default
+    .panel-heading
+      | Proyect description
+    // /.panel-heading
+    .panel-body
+      #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+        .row
+          .col-sm-6
+            #dataTables-example_length.dataTables_length
+              label
+                | Show
+                select.form-control.input-sm(name='dataTables-example_length', aria-controls='dataTables-example')
+                  option(value='10') 10
+                  option(value='25') 25
+                  option(value='50') 50
+                  option(value='100') 100
+                |  entries
+          .col-sm-6
+            #dataTables-example_filter.dataTables_filter
+              label
+                | Search:
+                input.form-control.input-sm(placeholder='', aria-controls='dataTables-example', type='search')
+        .row
+          .col-sm-12
+            table#dataTables-example.table.table-striped.table-bordered.table-hover.dataTable.no-footer.dtr-inline(role='grid', aria-describedby='dataTables-example_info', style='width: 100%;', width='100%')
+              thead
+                tr(role='row')
+                  th.sorting_asc(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 175px;', aria-sort='ascending', aria-label='Rendering engine: activate to sort column descending') To do
+                  th.sorting(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 205px;', aria-label='Browser: activate to sort column ascending') In progress
+                  th.sorting(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 187px;', aria-label='Platform(s): activate to sort column ascending') Ready for review
+                  th.sorting(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 152px;', aria-label='Engine version: activate to sort column ascending') Done
+              tbody
+                tr.gradeA.odd(role='row')
+                  td.sorting_1 Gecko
+                  td Firefox 1.0
+                  td Win 98+ / OSX.2+
+                  td.center 1.7
+                tr.gradeA.even(role='row')
+                  td.sorting_1 Gecko
+                  td Firefox 1.5
+                  td Win 98+ / OSX.2+
+                  td.center 1.8
+                tr.gradeA.odd(role='row')
+                  td.sorting_1 Gecko
+                  td Firefox 2.0
+                  td Win 98+ / OSX.2+
+                  td.center 1.8
+        .row
+          .col-sm-6
+            #dataTables-example_info.dataTables_info(role='status', aria-live='polite') Showing 1 to 10 of 57 entries
+          .col-sm-6
+            #dataTables-example_paginate.dataTables_paginate.paging_simple_numbers
+              ul.pagination
+                li#dataTables-example_previous.paginate_button.previous.disabled(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') Previous
+                li.paginate_button.active(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') 1
+                li.paginate_button(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') 2
+                li.paginate_button(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') 3
+                li.paginate_button(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') 4
+                li.paginate_button(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') 5
+                li.paginate_button(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') 6
+                li#dataTables-example_next.paginate_button.next(aria-controls='dataTables-example', tabindex='0')
+                  a(href='#') Next
