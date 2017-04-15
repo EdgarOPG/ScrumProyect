@@ -1,9 +1,21 @@
+// Routes
+'use strict'
+
 var express = require('express');
 var router = express.Router();
+const indexController = require('../controllers/index');
+const userController = require('../controllers/user');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', indexController.index);
+
+/* POST para hacer login */
+router.post('/login', indexController.login);
+
+/* GET view signup para crear usuario */
+router.get('/signup', userController.newUser);
+
+/* POST para crear un nuevo usuario */
+router.post('/',userController.create);
 
 module.exports = router;
