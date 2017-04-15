@@ -8,6 +8,9 @@ const router = express.Router();
 /* GET dashboard del usuario */
 router.get('/', userController.index);
 
+/* POST para crear un nuevo usuario */
+router.post('/',userController.create);
+
 /* GET el perfil del usuario segun su id */
 router.get('/:id', userController.show);
 

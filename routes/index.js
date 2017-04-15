@@ -15,7 +15,4 @@ router.post('/login', indexController.login);
 /* GET view signup para crear usuario */
 router.get('/signup', userController.newUser);
 
-/* POST para crear un nuevo usuario */
-router.post('/',userController.create);
-
 module.exports = router;

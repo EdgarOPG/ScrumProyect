@@ -40,7 +40,55 @@ function newUser(req, res, next){
 }
 
 function create(req, res, next){
-  logger.debug("CREATE USER")
+  logger.debug("CREATE USER");
+
+  let user = new User({
+    usuario: req.body.usuario,
+    nombre: req.body.nombre,
+    primerApellido: req.body.primerApellido,
+    segundoApellido: req.body.segundoApellido,
+    fechaNacimiento: req.body.fechaNacimiento,
+    curp: req.body.curp,
+    rfc: req.body.rfc,
+    domicilio: req.body.domicilio,
+    email: req.body.email,
+    password: req.body.password
+  });
+
+  if(req.body.password){
+    bcrypt.hash(req.body.password, null, null, (err, hash) => {
+      let code = '';
+      let message = '';
+
+      if(err){
+        code = 'danger';
+        message = 'No se ha podido guardar el usuario';
+        res.locals.status = {
+          code:code,
+          message:message
+        };
+        //next();
+        res.redirect('/dashboard/');
+      }else{
+        user.password = hash;
+        user.save((err, object) => {
+          if(err){
+            code = 'danger';
+            message = 'No se ha podido guardar el usuario.';
+          }else{
+            code = 'success';
+            message = 'Usuario creado Correctamente.';
+          }
+          res.locals.status = {
+            code:code,
+            message:message
+          };
+          //next();
+          res.redirect('/dashboard/');
+        });
+      }
+    });
+  }
 }
 
 function show(req, res, next){
