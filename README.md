@@ -5,11 +5,11 @@
 - [Edgar Omar Peinado García](https://github.com/EdgarOPG)
 - [Gaspar Alberto Quintana Gallegos](https://github.com/gaqg)
 
-First of all to install depedencies run on terminal:
+First of all to install depedencies run on your terminal:
 
 `npm install` and `bower install`
 
-then run the mongo deamon using on your terminal:
+then run the mongo daemon using:
 
 `sudo mongod`
 
