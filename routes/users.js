@@ -1,24 +1,29 @@
-var express = require('express');
-var router = express.Router();
+// Routes
+'use strict'
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('users/index', {});
-});
+const express = require('express');
+const userController = require('../controllers/user');
+const router = express.Router();
 
-router.get('/login', function(req, res, next) {
-  res.render('users/login', {});
-});
+/* GET dashboard del usuario */
+router.get('/', userController.index);
 
-router.get('/blank', (req, res, next) => {
-  res.render('users/blank', {});
-});
+/* POST para crear un nuevo usuario */
+router.post('/',userController.create);
 
-router.post('/create', (req, res, next) => {
-  console.log(req.body.usuario);
-  console.log(req.body.nombre);
-  console.log(req.body.primerApellido);
-  console.log(req.body.segundoApellido);
-});
+/* GET el perfil del usuario segun su id */
+router.get('/:id', userController.show);
+
+/*GET los datos segun su id del usuario para editarse */
+router.get('/:id/edit', userController.edit);
+
+/*PUT actualiza los datos del usuario segun su id */
+router.put('/:id', userController.update);
+
+/*DELETE el perfil del usuario segun su id */
+router.delete('/:id', userController.destroy);
+
+/* Se declara el next() */
+router.use('/', userController.index);
 
 module.exports = router;

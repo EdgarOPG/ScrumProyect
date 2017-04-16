@@ -12,6 +12,9 @@ html
     // Custom Fonts
     link(rel='stylesheet' href='/stylesheets/font-awesome.min.css')
   body
+    div(class="container")
+      if(status != undefined)
+        div(class=`alert alert-${status.code}`) #{status.message}
     block content
     // script(src='/javascripts/jquery.min.js')
     // Bootstrap Core JavaScript
