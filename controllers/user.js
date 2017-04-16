@@ -14,9 +14,14 @@ function index(req, res, next){
   if(req.session.user){
     user = req.session.user;
   }
-  User.find({},(err, users) => {
-    res.render('dashboard', { });
-  });
+
+  res.render('profile', {'user':user,
+   'status': res.locals.status});
+
+  /*User.find({},(err, users) => {
+    res.render('dashboard', {'users':users, 'user':user,
+     'status': res.locals.status});
+  });*/
 }
 
 /* GET signup view en blanco para crear usuario*/
@@ -67,8 +72,8 @@ function create(req, res, next){
           code:code,
           message:message
         };
-        //next();
-        res.redirect('/dashboard/');
+        next();
+        //res.redirect('/dashboard/');
       }else{
         user.password = hash;
         user.save((err, object) => {
@@ -83,8 +88,8 @@ function create(req, res, next){
             code:code,
             message:message
           };
-          //next();
-          res.redirect('/dashboard/');
+          next();
+          //res.redirect('/dashboard/');
         });
       }
     });

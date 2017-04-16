@@ -23,4 +23,7 @@ router.put('/:id', userController.update);
 /*DELETE el perfil del usuario segun su id */
 router.delete('/:id', userController.destroy);
 
+/* Se declara el next() */
+router.use('/', userController.index);
+
 module.exports = router;
