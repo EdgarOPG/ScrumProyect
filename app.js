@@ -15,6 +15,8 @@ const dashboard = require('./routes/dashboard');
 const profile = require('./routes/profile');
 const land = require('./routes/land');
 const graf = require('./routes/graf');
+const cards = require('./routes/cards');
+
 
 const app = express();
 
@@ -46,6 +48,7 @@ app.use('/dashboard', dashboard);
 app.use('/profile', profile);
 app.use('/land', land);
 app.use('/graf', graf);
+app.use('/cards', cards);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
