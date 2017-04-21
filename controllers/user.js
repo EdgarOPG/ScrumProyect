@@ -97,7 +97,10 @@ function create(req, res, next){
 }
 
 function show(req, res, next){
-
+  logger.debug("SHOW");
+  User.findOne({_id:req.session.user},(err, user)=>{
+    res.render('/profile/', {'user':user});
+  });
 }
 
 function edit(req, res, next){

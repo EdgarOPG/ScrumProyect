@@ -181,14 +181,14 @@ block content
                   i.fa.fa-search
             // /input-group
           li
-            a.profile-sidebar(href='profile')
+            a.profile-sidebar(href='/profile/')
               .profile-userpic
                 img.img-responsive(src='/images/profile.jpg', alt='')
                 .profile-usertitle
-                  .profile-usertitle-name  Marcus Doe
+                  .profile-usertitle-name #{user.usuario}
                   .profile-usertitle-job  Developer
           li
-            a(href='dashboard')
+            a(href='/dashboard/')
               i.fa.fa-dashboard.fa-fw
               |  Dashboard
           li

@@ -11,7 +11,6 @@ const session = require('express-session')
 const index = require('./routes/index');
 const users = require('./routes/users');
 const login = require('./routes/login');
-const dashboard = require('./routes/dashboard');
 const profile = require('./routes/profile');
 const land = require('./routes/land');
 const graf = require('./routes/graf');
@@ -42,7 +41,6 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
-app.use('/dashboard', dashboard);
 app.use('/profile', profile);
 app.use('/land', land);
 app.use('/graf', graf);
