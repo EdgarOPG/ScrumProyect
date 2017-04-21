@@ -6,9 +6,10 @@ var router = express.Router();
 const indexController = require('../controllers/index');
 const userController = require('../controllers/user');
 
+/* Redirect to login page.  */
 router.get('/', indexController.redirect);
 
-/* GET home page.  */
+/* GET login page.  */
 router.get('/login', indexController.index);
 
 /* POST para hacer login */
