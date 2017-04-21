@@ -18,4 +18,10 @@ router.get('/signup', userController.newUser);
 /* GET dashboard del usuario */
 router.get('/dashboard', indexController.dashboard);
 
+/* GET el perfil del usuario segun su id */
+router.get('/:id', indexController.show);
+
+/* GET los datos segun su id del usuario para editarse */
+router.get('/:id/edit', indexController.edit);
+
 module.exports = router;

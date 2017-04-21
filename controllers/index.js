@@ -42,14 +42,28 @@ function login(req, res, next){
 
 function dashboard(req, res, next){
   if(req.session.user){
+    //TODO refact
     User.findOne({_id:req.session.user}, (err, user) => {
       res.render('dashboard', {'user':user});
     });
   }
 }
 
+function show(req, res, next){
+  logger.debug("SHOW");
+  User.findOne({_id:req.session.user},(err, user) => {
+    res.render('profile', {'user':user});
+  });
+}
+
+function edit(req, res, next){
+
+}
+
 module.exports = {
   index,
   login,
-  dashboard
+  dashboard,
+  show,
+  edit
 };

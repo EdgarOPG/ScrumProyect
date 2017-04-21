@@ -8,7 +8,7 @@ block navbar
   .col-lg-12
   .panel.panel-default
     .panel-heading
-      | Proyect description
+      | Datos de usuario
     // /.panel-heading
     .panel-body
       #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
@@ -39,64 +39,24 @@ block navbar
                       i.fa.fa-stack-overflow
             .col-xs-12.col-sm-8
               ul.list-group
-                li.list-group-item John Doe
-                li.list-group-item Software Engineer
-                li.list-group-item Google Inc.
                 li.list-group-item
-                  i.fa.fa-phone
-                  |  000-000-0000
+                  i.fa.fa-user
+                  |  #{user.nombre} #{user.primerApellido} #{user.segundoApellido}
+                li.list-group-item
+                  i.fa.fa-address-card
+                  |  #{user.curp}
+                li.list-group-item #{user.rfc}
+                li.list-group-item
+                  i.fa.fa-home
+                  |  #{user.domicilio}
+                //li.list-group-item
+                  //i.fa.fa-phone
+                  //|  000-000-0000
                 li.list-group-item
                   i.fa.fa-envelope
-                  |  john@example.com
-      .bs-callout.bs-callout-danger
-        h4 Summary
-        p
-          | Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu,
-          | te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
-        p
-          | Odio recteque expetenda eum ea, cu atqui maiestatis cum. Te eum nibh laoreet, case nostrud nusquam an vis.
-          | Clita debitis apeirian et sit, integre iudicabit elaboraret duo ex. Nihil causae adipisci id eos.
-      .bs-callout.bs-callout-danger
-        h4 Research Interests
-        p
-          | Software Engineering, Machine Learning, Image Processing,
-          | Computer Vision, Artificial Neural Networks, Data Science,
-          | Evolutionary Algorithms.
-      .bs-callout.bs-callout-danger
-        h4 Prior Experiences
-        ul.list-group
-          a.list-group-item.inactive-link(href='#')
-            h4.list-group-item-heading
-              | Software Engineer at Twitter
-            p.list-group-item-text
-              | Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu,
-              | te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
-          a.list-group-item.inactive-link(href='#')
-            h4.list-group-item-heading Software Engineer at LinkedIn
-            p.list-group-item-text
-              | Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur.
-              | Quis verear mel ne. Munere vituperata vis cu, te pri duis timeam scaevola,
-              | nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
-            ul
-              li
-                | Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur.
-                | Quis verear mel ne. Munere vituperata vis cu, te pri duis timeam scaevola,
-                | nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
-              li
-                | Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur.
-                | Quis verear mel ne. Munere vituperata vis cu, te pri duis timeam scaevola,
-                | nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
-            p
-      .bs-callout.bs-callout-danger
-        h4 Key Expertise
-        ul.list-group
-          li.list-group-item  Lorem ipsum dolor sit amet, ea vel prima adhuc
-          li.list-group-item  Lorem ipsum dolor sit amet, ea vel prima adhuc
-          li.list-group-item  Lorem ipsum dolor sit amet, ea vel prima adhuc
-          li.list-group-item  Lorem ipsum dolor sit amet, ea vel prima adhuc
-          li.list-group-item Lorem ipsum dolor sit amet, ea vel prima adhuc
-          li.list-group-item  Lorem ipsum dolor sit amet, ea vel prima adhuc
-      .bs-callout.bs-callout-danger
+                  |  #{user.email}
+                form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
+                  input(type='submit', class="btn btn-danger", value='Eliminar')
         h4 Language and Platform Skills
         ul.list-group
           a.list-group-item.inactive-link(href='#')
@@ -138,20 +98,4 @@ block navbar
               .meter.meter-right(style='width: 20%;')
                 span.meter-text I''m good
       .bs-callout.bs-callout-danger
-        h4 Education
-        table.table.table-striped.table-responsive
-          thead
-            tr
-              th Degree
-              th Graduation Year
-              th CGPA
-          tbody
-            tr
-              td Masters in Computer Science and Engineering
-              td 2014
-              td  3.50
-            tr
-              td BSc. in Computer Science and Engineering
-              td 2011
-              td  3.25
     // resume
