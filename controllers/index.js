@@ -7,6 +7,9 @@ const log4js = require('log4js');
 const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
 
+function redirect(req, res, nest){
+  res.redirect('/login');
+}
 
 function index(req, res, next) {
   res.render('index', {  });
@@ -62,6 +65,7 @@ function edit(req, res, next){
 
 module.exports = {
   index,
+  redirect,
   login,
   dashboard,
   show,

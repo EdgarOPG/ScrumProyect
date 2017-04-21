@@ -9,15 +9,15 @@ block content
             img( class='logo-login',src='/images/logo.png')
             h3.panel-title Please Sign In
           .panel-body
-            form(role='form')
+            form(method='POST', action='/login', role='form')
               fieldset
                 .form-group
-                  input.form-control(placeholder='E-mail', name='email', type='email', autofocus='')
+                  input.form-control(placeholder='Usuario', name='usuario', autofocus='')
                 .form-group
                   input.form-control(placeholder='Password', name='password', type='password', value='')
                 .checkbox
                   label
                     input(name='remember', type='checkbox', value='Remember Me')
                     | Remember Me
-                // Change this to a button or input when using this as a form
-                a.btn.btn-lg.btn-success.btn-block(href='index.html') Login
+                input.btn.btn-lg.btn-success.btn-block(value='Log in', type='submit')
+                a(href='/signup/') O registrate
