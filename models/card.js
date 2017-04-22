@@ -14,4 +14,4 @@ const CardSchema = Schema({
   then: String
 });
 
-module.exports = mongoose.model('Card', UserSchema);
+module.exports = mongoose.model('Card', CardSchema);
