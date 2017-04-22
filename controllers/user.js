@@ -10,13 +10,8 @@ const logger = log4js.getLogger();
 function index(req, res, next){
   logger.debug("INDEX");
 
-  let user = "";
-  if(req.session.user){
-    user = req.session.user;
-  }
+  console.log(req.session.user);
 
-  res.render('profile', {'user':user,
-   'status': res.locals.status});
 
   /*User.find({},(err, users) => {
     res.render('dashboard', {'users':users, 'user':user,
@@ -96,27 +91,34 @@ function create(req, res, next){
   }
 }
 
-function show(req, res, next){
-
-}
-
-function edit(req, res, next){
-
-}
-
 function destroy(req, res, next){
-
+  console.log("DESTROY");
+  let code = '';
+  let message = '';
+  User.remove({ _id: req.session.user }, (err) => {
+    if (!err) {
+      res.locals.status = {
+        code:'error',
+        message:'El usuario no fue eliminado.'
+      };
+    }
+    else {
+      res.locals.status = {
+        code:'success',
+        message:'Usuario eliminado Correctamente.'
+      };
+    }
+});
 }
 
 function update(req, res, next){
 
 }
+
 module.exports = {
   index,
   newUser,
   create,
-  show,
-  edit,
   update,
   destroy
 };

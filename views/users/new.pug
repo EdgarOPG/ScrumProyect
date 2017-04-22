@@ -3,34 +3,10 @@ extends ../layout
 block content
   .container
     .row
-      .col-md-4.col-md-offset-4
-        .login-panel.panel.panel-default
-          .panel-heading
-            img( class='logo-login',src='/images/logo.png')
-            h3.panel-title Por favor ingresa todos tus datos
-          .panel-body
-            form(role='form', name='add-user', id='form-add-user', method='POST', action='/users/')
-              fieldset
-                .form-group
-                  input.form-control(placeholder='Usuario', name='usuario', type='text', autofocus='')
-                .form-group
-                  input.form-control(placeholder='Nombre', name='nombre', type='text')
-                .form-group
-                  input.form-control(placeholder='Primer apellido', name='primerApellido', type='text')
-                .form-group
-                  input.form-control(placeholder='Segundo apellido', name='segundoApellido', type='text')
-                .form-group
-                  input.form-control(placeholder='Fecha de nacimiento', name='fechaNacimiento', type='date')
-                .form-group
-                  input.form-control(placeholder='CURP', name='curp', type='text')
-                .form-group
-                  input.form-control(placeholder='RFC', name='rfc', type='text')
-                .form-group
-                  input.form-control(placeholder='Domicilio', name='domicilio', type='text')
-                .form-group
-                  input.form-control(placeholder='E-mail', name='email', type='email')
-                .form-group
-                  input.form-control(placeholder='Password', name='password', type='password', value='')
-                .form-group
-                  input.form-control(placeholder='Confirmar password', name='confirmarPassword', type='password', value='')
-                input.btn.btn-lg.btn-success.btn-block(type='submit', value='Registrarse')
+      .col-md-8.col-md-offset-2
+        //.panel.panel-default
+        .panel-heading
+          img( class='logo-login',src='/images/logo.png')
+          h3.panel-title Por favor ingresa todos tus datos
+        .panel-body
+          include form.pug

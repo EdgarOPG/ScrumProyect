@@ -10,7 +10,7 @@ block content
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='index.html')
+      a.navbar-brand(href='/dashboard/')
         img( class='logo', src='/images/logo.png')
     // /.navbar-header
     ul.nav.navbar-top-links.navbar-right
@@ -181,14 +181,14 @@ block content
                   i.fa.fa-search
             // /input-group
           li
-            a.profile-sidebar(href='profile')
+            a.profile-sidebar(href=`/${user._id}/`)
               .profile-userpic
                 img.img-responsive(src='/images/profile.jpg', alt='')
                 .profile-usertitle
-                  .profile-usertitle-name  Marcus Doe
+                  .profile-usertitle-name #{user.usuario}
                   .profile-usertitle-job  Developer
           li
-            a(href='dashboard')
+            a(href='/dashboard/')
               i.fa.fa-dashboard.fa-fw
               |  Dashboard
           li
