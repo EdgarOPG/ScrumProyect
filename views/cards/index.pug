@@ -1,0 +1,55 @@
+extends ../navbar
+
+block navbar
+  .principal-card.make-it-flex
+    .card.text-center
+      .card-header
+        | Card
+      .card-block
+        h4.col-xs-12.col-sm-4.flex-item-1 NARRATIVA DE LA HISTORIA
+        input(type='text' id='history' name='history' placeholder='historia' value=`${cards.history}`).col-xs-12.col-sm-4.flex-item-3
+        p.col-xs-12.col-sm-4.flex-item-5 Prioridad ________
+        br
+        br
+        br
+        h4.col-xs-12.col-sm-4.flex-item-2 Como
+        input(type='text' id='how' name='how' placeholder='como' value=`${cards.how}`).col-xs-12.col-sm-4.flex-item-4
+        p.col-xs-12.col-sm-4.flex-item-6 tamaño ________
+        br
+        br
+        br
+        h4.col-xs-12.col-sm-4.flex-item-2 Quiero
+        input(type='text' id='whant' name='whant' placeholder='Quiero' value=`${cards.whant}`).col-xs-12.col-sm-4.flex-item-4
+        br
+        br
+        br
+        h4.col-xs-12.col-sm-4.flex-item-2 De tal manera
+        input(type='text' id='some' name='some' placeholder='De tal manera'  value=`${cards.some}`).col-xs-12.col-sm-4.flex-item-4
+        br
+        br
+        br
+      .card-block
+        br
+        h4.col-xs-12.col-sm-4.flex-item-1 CRITERIOS DE ACEPTACIÓN
+        input(type='text' id='accept' name='accept' placeholder='criterios'  value=`${cards.accept}`).col-xs-12.col-sm-4.flex-item-3
+        br
+        br
+        br
+        h4.col-xs-12.col-sm-4.flex-item-2 Dado
+        input(type='text' id='given' name='given' placeholder='Dado'  value=`${cards.given}`).col-xs-12.col-sm-4.flex-item-4
+        br
+        br
+        br
+        h4.col-xs-12.col-sm-4.flex-item-2 Cuando
+        input(type='text' id='when' name='when' placeholder='Cuando'  value=`${cards.when}`).col-xs-12.col-sm-4.flex-item-4
+        br
+        br
+        br
+        h4.col-xs-12.col-sm-4.flex-item-2 Entonces
+        input(type='text' id='then' name='then' placeholder='Entonces'  value=`${cards.then}`).col-xs-12.col-sm-4.flex-item-4
+        br
+        br
+        br
+        br
+        input(type='submit')
+      .card-footer.text-muted
