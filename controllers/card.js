@@ -8,12 +8,7 @@ const logger = log4js.getLogger();
 
 function index(req, res, next) {
   logger.debug("INDEX");
-
-  var card ="";
-  if(req.session.card){
-    card = req.session.card;
-  }
-  Card.find({},(err, cards)=>{
+  Card.find({},(err, cards) => {
     res.render('cards/index');
   });
 }
@@ -31,13 +26,15 @@ function newCard(req, res, next){
   'when':'',
   'then':''};
 
-  res.render('cards/index', {'cards':cards});
+  var user = "";
+  if(req.session.user){
+    user = req.session.user;
+    res.render('cards/index', {'cards':cards, 'user':user});
+  }
 }
 
 function create(req, res, next){
   logger.debug("CREATE");
-
-
 
   let card = new Card({
     history: req.body.history,

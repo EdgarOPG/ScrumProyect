@@ -7,7 +7,7 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', cardController.index);
 
-router.get('/', cardController.newCard);
+router.get('/new', cardController.newCard);
 
 router.post('/',cardController.create);
 
