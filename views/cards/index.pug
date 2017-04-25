@@ -16,19 +16,20 @@ block navbar
           th when
           th then
           th
-            a(class="btn btn-success", href='/cards/new') Nuevo
+            a(class="btn btn-success", href='/dashboard/cards/new') Nuevo
         tbody
+          each card in cards
             tr
-              td #{cards.history}
-              td #{cards.how}
-              td #{cards.whant}
-              td #{cards.some}
-              td #{cards.accept}
-              td #{cards.given}
-              td #{cards.when}
-              td #{cards.then}
+              td #{card.history}
+              td #{card.how}
+              td #{card.whant}
+              td #{card.some}
+              td #{card.accept}
+              td #{card.given}
+              td #{card.when}
+              td #{card.then}
               td
-                a(class="btn btn-primary", href=`/cards/${cards._id}`) Ver
-                a(class="btn btn-warning", href=`/cards/${cards._id}/edit`) Editar
-                form(name='delete-user', id='form-delete-user', method='POST', action=`/cards/${cards._id}?_method=DELETE`)
+                a(class="btn btn-primary", href=`/cards/${card._id}`) Ver
+                a(class="btn btn-warning", href=`/cards/${card._id}/edit`) Editar
+                form(name='delete-user', id='form-delete-user', method='POST', action=`/cards/${card._id}?_method=DELETE`)
                   input(type='submit', class="btn btn-danger", value='Eliminar')

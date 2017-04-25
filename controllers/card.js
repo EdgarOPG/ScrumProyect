@@ -9,8 +9,10 @@ const logger = log4js.getLogger();
 function index(req, res, next) {
   logger.debug("INDEX");
   Card.find({},(err, cards) => {
-    res.render('cards/index', {'cards':cards, 'user':user,
-     'status':res.local.status});
+    var user = "";
+    if(req.session.user){
+    res.render('cards/index', {'cards':cards, 'user':user});
+   }
   });
 }
 
@@ -47,8 +49,16 @@ function create(req, res, next){
     when: req.body.when,
     then: req.body.then
   });
-
-
+  card.save((err, object)=>{
+    if(err){
+    //code = 'danger';
+    message = 'No se ha podido guardar el usuario.';
+    }else{
+    /*code = 'success';
+    message = 'Usuario creado Correctamente.';*/
+    next();
+    }
+  });
 }
 
 function show(req, res, next){
