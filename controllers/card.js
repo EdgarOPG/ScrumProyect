@@ -7,16 +7,20 @@ const logger = log4js.getLogger();
 
 
 function index(req, res, next) {
-  logger.debug("INDEX");
-  Card.find({},(err, cards) => {
-    res.render('cards/index');
-  });
+  logger.debug("INDEX CARDS");
+  var user = "";
+  if(req.session.user){
+    user = req.session.user;
+    Card.find({},(err, cards) => {
+      res.render('cards/index', {'cards':cards, 'user':user});
+    });
+  }
 }
 
 function newCard(req, res, next){
   logger.debug("NEW");
 
-  const cards = {
+  const card = {
   'history':'',
   'how':'',
   'whant':'',
@@ -29,7 +33,7 @@ function newCard(req, res, next){
   var user = "";
   if(req.session.user){
     user = req.session.user;
-    res.render('cards/index', {'cards':cards, 'user':user});
+    res.render('cards/index', {'card':card, 'user':user});
   }
 }
 

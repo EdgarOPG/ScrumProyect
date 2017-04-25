@@ -91,6 +91,15 @@ block navbar
                 span.meter-text I'm a guru
               .meter.meter-right(style='width: 20%;')
                 span.meter-text I''m good
+            .todo-wrapper(ng-controller='TodoCtrl')
+              h2
+                | You've got
+                span.emphasis {{getTotalTodos()}}
+                |  things to do
+              ul
+                li(ng-repeat='todo in todos')
+                  input(type='checkbox', ng-model='todo.done')
+                  span(class='done-{{todo.done}}') {{todo.text}}
       .bs-callout.bs-callout-danger
       form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
         a( type='button', href='./edit/', class='btn btn-primary') Editar
