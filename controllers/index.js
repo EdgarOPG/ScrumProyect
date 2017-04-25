@@ -60,7 +60,10 @@ function show(req, res, next){
 }
 
 function edit(req, res, next){
-
+  console.log("EDIT");
+  User.findOne({_id:req.params.id},(err, user) => {
+    res.render('users/edit', {'user':user});
+  });
 }
 
 module.exports = {

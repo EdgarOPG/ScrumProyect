@@ -112,7 +112,12 @@ function destroy(req, res, next){
 }
 
 function update(req, res, next){
-
+  console.log("UPDATE");
+  res.locals.status = {
+    code:'success',
+    message:'Usuario actualizado Correctamente.'
+  };
+  next();
 }
 
 module.exports = {
