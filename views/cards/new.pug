@@ -1,0 +1,6 @@
+extends ../navbar
+
+block navbar
+  h1 Nueva carta
+  form(name='add-cards', id='form-add-cards', method='POST', action='/cards/')
+    include form.pug

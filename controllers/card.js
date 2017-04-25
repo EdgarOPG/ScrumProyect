@@ -9,7 +9,8 @@ const logger = log4js.getLogger();
 function index(req, res, next) {
   logger.debug("INDEX");
   Card.find({},(err, cards) => {
-    res.render('cards/index');
+    res.render('cards/index', {'cards':cards, 'user':user,
+     'status':res.local.status});
   });
 }
 
@@ -29,7 +30,7 @@ function newCard(req, res, next){
   var user = "";
   if(req.session.user){
     user = req.session.user;
-    res.render('cards/index', {'cards':cards, 'user':user});
+    res.render('cards/new', {'cards':cards, 'user':user});
   }
 }
 
@@ -46,28 +47,51 @@ function create(req, res, next){
     when: req.body.when,
     then: req.body.then
   });
+
+
 }
 
-/*function show(req, res, next){
+function show(req, res, next){
+  console.log("SHOW");
+  User.findOne({_id:req.params.id},(err, user)=>{
+    res.render('cards/show', {'cards':cards});
+  });
+
 }
 
 function edit(req, res, next){
+  console.log("EDIT");
+  Card.findOne({_id:req.params.id},(err, user)=>{
+    res.render('cards/edit', {'cards':cards});
+  });
 }
 
 function update(req, res, next){
+  console.log("UPDATE");
+  res.locals.status = {
+    code:'success',
+    message:'Card actualizada Correctamente.'
+  };
+  next();
 }
 
 function destroy(req, res, next){
+  console.log("DESTROY");
+  res.locals.status = {
+    code:'success',
+    message:'Card eliminado Correctamente.'
+  };
+  next();
 }
-*/
+
 
 module.exports = {
     index,
     newCard,
     create,
-/*  show,
+    show,
     edit,
     update,
     destroy
-*/
+
 };
