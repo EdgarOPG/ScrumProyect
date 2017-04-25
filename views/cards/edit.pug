@@ -1,0 +1,6 @@
+extends ../navbar
+
+block navbar
+  h1 Editar Usuario
+  form(name='add-cards', id='form-add-cards', method='POST', action=`/cards/${card.id}?_method=PUT`)
+    include form.pug

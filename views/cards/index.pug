@@ -1,55 +1,35 @@
 extends ../navbar
 
 block navbar
-  .principal-card.make-it-flex
-    .card.text-center
-      .card-header
-        | Card
-      .card-block
-        h4.col-xs-12.col-sm-4.flex-item-1 NARRATIVA DE LA HISTORIA
-        input(type='text' id='history' name='history' placeholder='historia' value=`${card.history}`).col-xs-12.col-sm-4.flex-item-3
-        p.col-xs-12.col-sm-4.flex-item-5 Prioridad ________
-        br
-        br
-        br
-        h4.col-xs-12.col-sm-4.flex-item-2 Como
-        input(type='text' id='how' name='how' placeholder='como' value=`${card.how}`).col-xs-12.col-sm-4.flex-item-4
-        p.col-xs-12.col-sm-4.flex-item-6 tamaño ________
-        br
-        br
-        br
-        h4.col-xs-12.col-sm-4.flex-item-2 Quiero
-        input(type='text' id='whant' name='whant' placeholder='Quiero' value=`${card.whant}`).col-xs-12.col-sm-4.flex-item-4
-        br
-        br
-        br
-        h4.col-xs-12.col-sm-4.flex-item-2 De tal manera
-        input(type='text' id='some' name='some' placeholder='De tal manera'  value=`${card.some}`).col-xs-12.col-sm-4.flex-item-4
-        br
-        br
-        br
-      .card-block
-        br
-        h4.col-xs-12.col-sm-4.flex-item-1 CRITERIOS DE ACEPTACIÓN
-        input(type='text' id='accept' name='accept' placeholder='criterios'  value=`${card.accept}`).col-xs-12.col-sm-4.flex-item-3
-        br
-        br
-        br
-        h4.col-xs-12.col-sm-4.flex-item-2 Dado
-        input(type='text' id='given' name='given' placeholder='Dado'  value=`${card.given}`).col-xs-12.col-sm-4.flex-item-4
-        br
-        br
-        br
-        h4.col-xs-12.col-sm-4.flex-item-2 Cuando
-        input(type='text' id='when' name='when' placeholder='Cuando'  value=`${card.when}`).col-xs-12.col-sm-4.flex-item-4
-        br
-        br
-        br
-        h4.col-xs-12.col-sm-4.flex-item-2 Entonces
-        input(type='text' id='then' name='then' placeholder='Entonces'  value=`${card.then}`).col-xs-12.col-sm-4.flex-item-4
-        br
-        br
-        br
-        br
-        input(type='submit')
-      .card-footer.text-muted
+  div(class="row")
+    div(class="col-md-12")
+      h1 Usuarios del Sistema
+      h2 #{user}
+      table(class="table")
+        thead
+          th history
+          th how
+          th whant
+          th some
+          th accept
+          th given
+          th when
+          th then
+          th
+            a(class="btn btn-success", href='/dashboard/cards/new') Nuevo
+        tbody
+          each card in cards
+            tr
+              td #{card.history}
+              td #{card.how}
+              td #{card.whant}
+              td #{card.some}
+              td #{card.accept}
+              td #{card.given}
+              td #{card.when}
+              td #{card.then}
+              td
+                a(class="btn btn-primary", href=`/cards/${card._id}`) Ver
+                a(class="btn btn-warning", href=`/cards/${card._id}/edit`) Editar
+                form(name='delete-user', id='form-delete-user', method='POST', action=`/cards/${card._id}?_method=DELETE`)
+                  input(type='submit', class="btn btn-danger", value='Eliminar')
