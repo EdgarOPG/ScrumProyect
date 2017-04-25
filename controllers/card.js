@@ -61,18 +61,16 @@ function create(req, res, next){
   });
 }
 
-function show(req, res, next){
-  console.log("SHOW");
-  User.findOne({_id:req.params.id},(err, user)=>{
-    res.render('cards/show', {'cards':cards});
-  });
-
-}
-
 function edit(req, res, next){
   console.log("EDIT");
-  Card.findOne({_id:req.params.id},(err, user)=>{
-    res.render('cards/edit', {'cards':cards});
+  Card.findOne({_id:req.params.id},(err, cards)=>{
+    var user = "";
+    if(req.session.user){
+    user = req.session.user;
+    res.render('cards/edit', {'cards':cards, 'user':user});
+    }
+
+
   });
 }
 
@@ -87,19 +85,28 @@ function update(req, res, next){
 
 function destroy(req, res, next){
   console.log("DESTROY");
-  res.locals.status = {
-    code:'success',
-    message:'Card eliminado Correctamente.'
-  };
-  next();
+  let code = '';
+  let message = '';
+  Card.remove({ _id: req.session.user }, (err) => {
+    if (!err) {
+      res.locals.status = {
+        code:'error',
+        message:'El Card no fue eliminado.'
+      };
+    }
+    else {
+      res.locals.status = {
+        code:'success',
+        message:'Card eliminado Correctamente.'
+      };
+    }
+});
 }
-
 
 module.exports = {
     index,
     newCard,
     create,
-    show,
     edit,
     update,
     destroy

@@ -29,7 +29,6 @@ block navbar
               td #{card.when}
               td #{card.then}
               td
-                a(class="btn btn-primary", href=`/cards/${card._id}`) Ver
-                a(class="btn btn-warning", href=`/cards/${card._id}/edit`) Editar
-                form(name='delete-user', id='form-delete-user', method='POST', action=`/cards/${card._id}?_method=DELETE`)
+                a(class="btn btn-warning", href=`./cards/${card.id}/edit`) Editar
+                form(name='delete-card', id='form-delete-card', method='POST', action=`./cards/${card._id}?_method=DELETE`)
                   input(type='submit', class="btn btn-danger", value='Eliminar')

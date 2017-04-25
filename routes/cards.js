@@ -11,8 +11,6 @@ router.get('/new', cardController.newCard);
 
 router.post('/',cardController.create);
 
-router.get('/:id', cardController.show );
-
 router.get('/:id/edit', cardController.edit);
 
 router.put('/:id', cardController.update );
