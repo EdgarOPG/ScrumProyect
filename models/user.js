@@ -12,6 +12,7 @@ const UserSchema = Schema({
   curp: String,
   rfc: String,
   domicilio: String,
+  skills: {type: Array, "default":[]},
   email: String,
   password: String
 });
