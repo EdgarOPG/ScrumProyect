@@ -87,7 +87,7 @@ function destroy(req, res, next){
   console.log("DESTROY");
   let code = '';
   let message = '';
-  Card.remove({ _id: req.session.user }, (err) => {
+  Card.remove({ _id: req.params.id }, (err) => {
     if (!err) {
       res.locals.status = {
         code:'error',
@@ -101,6 +101,7 @@ function destroy(req, res, next){
       };
     }
 });
+  next();
 }
 
 module.exports = {
