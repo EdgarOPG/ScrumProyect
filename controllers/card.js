@@ -74,12 +74,23 @@ function edit(req, res, next){
   });
 }
 
-function update(req, res, next){
+/*function update(req, res, next){
   console.log("UPDATE");
   let code = '';
   let message = '';
-  Card.update({ _id: req.params.id },{$set:cards},(err,cards) => {
-    if (!err) {
+  Card.insert({ _id: req.params.id },
+    {$set: {
+      history: req.body.history,
+      how: req.body.how,
+      whant: req.body.whant,
+      some: req.body.some,
+      accept: req.body.accept,
+      given: req.body.given,
+      when: req.body.when,
+      then: req.body.then
+    }},
+    (err,cards) => {
+    if (err) {
       res.locals.status = {
         code:'error',
         message:'El Card no fue actualizado.'
@@ -93,7 +104,26 @@ function update(req, res, next){
     }
 });
   next();
+}*/
+
+function update(req, res, next){
+  logger.debug("UPDATE");
+  let cards = {
+    history: req.body.history,
+    how: req.body.how,
+    whant: req.body.whant,
+    some: req.body.some,
+    accept: req.body.accept,
+    given: req.body.given,
+    when: req.body.when,
+    then: req.body.then
+  };
+  Card.update({_id:req.params.id},{$set: card}, (err,card) =>{
+    next();
+  });
+
 }
+
 
 function destroy(req, res, next){
   console.log("DESTROY");

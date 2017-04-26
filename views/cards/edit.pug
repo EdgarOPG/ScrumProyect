@@ -2,5 +2,5 @@ extends ../navbar
 
 block navbar
   h1 Editar card
-  form(name='add-cards', id='form-add-cards', method='POST', action=`./cards/${cards._id}?_method=PUT`)
+  form(name='add-cards', id='form-add-cards', method='POST', action=`/dashboard/cards/`)
     include form.pug
