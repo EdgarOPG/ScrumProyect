@@ -76,10 +76,22 @@ function edit(req, res, next){
 
 function update(req, res, next){
   console.log("UPDATE");
-  res.locals.status = {
-    code:'success',
-    message:'Card actualizada Correctamente.'
-  };
+  let code = '';
+  let message = '';
+  Card.update({ _id: req.params.id },{$set:cards},(err,cards) => {
+    if (!err) {
+      res.locals.status = {
+        code:'error',
+        message:'El Card no fue actualizado.'
+      };
+    }
+    else {
+      res.locals.status = {
+        code:'success',
+        message:'Card actualizado Correctamente.'
+      };
+    }
+});
   next();
 }
 
