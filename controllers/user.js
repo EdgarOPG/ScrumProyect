@@ -10,7 +10,7 @@ const logger = log4js.getLogger();
 function index(req, res, next){
   logger.debug("INDEX");
 
-  console.log(req.session.user);
+  //console.log(req.session.user);
 
 
   /*User.find({},(err, users) => {
@@ -92,10 +92,10 @@ function create(req, res, next){
 }
 
 function destroy(req, res, next){
-  console.log("DESTROY");
+  logger.debug("DESTROY");
   let code = '';
   let message = '';
-  User.remove({ _id: req.session.user }, (err) => {
+  User.remove({ _id: req.session.id }, (err) => {
     if (!err) {
       res.locals.status = {
         code:'error',
@@ -112,7 +112,8 @@ function destroy(req, res, next){
 }
 
 function update(req, res, next){
-  console.log("UPDATE");
+  logger.debug("UPDATE");
+  logger.debug(req.params.id);
   let code = '';
   let message = '';
   let user = {
@@ -127,7 +128,7 @@ function update(req, res, next){
     email: req.body.email,
     password: req.body.password
   };
-  User.findByIdAndUpdate({_id:req.params.user},{$set: user}, (err, user) => {
+  User.findByIdAndUpdate({_id:req.params.id }, user, {upsert: true, overwrite: true}, (err, user) => {
     next();
   });
   res.locals.status = {
