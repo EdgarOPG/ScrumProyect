@@ -113,6 +113,23 @@ function destroy(req, res, next){
 
 function update(req, res, next){
   console.log("UPDATE");
+  let code = '';
+  let message = '';
+  let user = {
+    usuario: req.body.usuario,
+    nombre: req.body.nombre,
+    primerApellido: req.body.primerApellido,
+    segundoApellido: req.body.segundoApellido,
+    fechaNacimiento: req.body.fechaNacimiento,
+    curp: req.body.curp,
+    rfc: req.body.rfc,
+    domicilio: req.body.domicilio,
+    email: req.body.email,
+    password: req.body.password
+  };
+  User.update({_id:req.session.user},{$set: user}, (err, user) => {
+    next();
+  });
   res.locals.status = {
     code:'success',
     message:'Usuario actualizado Correctamente.'
