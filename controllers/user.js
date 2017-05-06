@@ -10,6 +10,7 @@ const logger = log4js.getLogger();
 function index(req, res, next){
   logger.debug("INDEX");
 
+  res.redirect('/dashboard');
   //console.log(req.session.user);
 
 
@@ -128,14 +129,42 @@ function update(req, res, next){
     email: req.body.email,
     password: req.body.password
   };
-  User.findByIdAndUpdate({_id:req.params.id }, user, {upsert: true, overwrite: true}, (err, user) => {
-    next();
-  });
-  res.locals.status = {
-    code:'success',
-    message:'Usuario actualizado Correctamente.'
-  };
-  next();
+
+  if(req.body.password){
+    bcrypt.hash(req.body.password, null, null, (err, hash) => {
+      let code = '';
+      let message = '';
+
+      if(err){
+        code = 'danger';
+        message = 'No se ha podido guardar el usuario';
+        res.locals.status = {
+          code:code,
+          message:message
+        };
+        next();
+        //res.redirect('/dashboard/');
+      }else{
+        user.password = hash;
+        User.findByIdAndUpdate({_id:req.params.id }, user, {upsert: true, overwrite: true}, (err, user) => {
+          next();
+          if(err){
+            code = 'danger';
+            message = 'No se ha podido guardar el usuario.';
+          }else{
+            code = 'success';
+            message = 'Usuario creado Correctamente.';
+          }
+          res.locals.status = {
+            code:code,
+            message:message
+          };
+          next();
+          //res.redirect('/dashboard/');
+        });
+      }
+    });
+  }
 }
 
 module.exports = {
