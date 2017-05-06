@@ -127,7 +127,7 @@ function update(req, res, next){
     email: req.body.email,
     password: req.body.password
   };
-  User.update({_id:req.session.user},{$set: user}, (err, user) => {
+  User.findByIdAndUpdate({_id:req.params.user},{$set: user}, (err, user) => {
     next();
   });
   res.locals.status = {
