@@ -1,5 +1,5 @@
 angular.module('todoAp', [])
-  .controller('ControladorTareas', ['$scope', '$http'
+  .controller('ControladorTareas', ['$scope', '$http',
 function($scope) {
   $scope.var = 'ASD';
   $scope.tareas = [{texto: 'Ser Super Heroico con AngularJS', ranking: 'Junior'},
@@ -11,5 +11,4 @@ function($scope) {
     $scope.skillDescription = '';
   }
 
-  $http.
 }]);
