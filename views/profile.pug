@@ -56,13 +56,8 @@ block navbar
                   i.fa.fa-envelope
                   |  #{user.email}
         h4 Language and Platform Skills
-        ul.list-group
-          .progress
-            .progress-bar.progress-bar-success(data-placement='top', style='width: 80%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='80', role='progressbar')
-              span.sr-only 80%
-              span.progress-type Java/ JavaEE/ Spring Framework
           div(ng-controller='ControladorTareas')
-            form( ng-submit='addSkill()')
+            form()
               input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
               select
                 option(value='junior') Junior
@@ -71,8 +66,7 @@ block navbar
               button(ng-click='addSkill()') Agregar
             ul
               li(ng-repeat='tarea in tareas')
-                p {{tarea.texto}}
-                input(type='checkbox', ng-model='tarea.hecho')
+                p {{tarea.texto}} - {{tarea.ranking}}
           .bs-callout.bs-callout-danger
           form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
           a( type='button', href='./edit/', class='btn btn-primary') Editar
