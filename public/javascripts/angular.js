@@ -10,6 +10,15 @@ angular.module('todoAp', [])
   }
 
   $scope.postSkills = function() {
-    
+    $http.post('/users/', {params: {name: 'ABCXYZ'}})
+      .success(
+          function(success){
+              console.log(success)
+          })
+      .error(
+          function(error){
+              console.log(error)
+          });
+
   }
 });
