@@ -56,6 +56,8 @@ function create(req, res, next){
     password: req.body.password
   });
 
+  logger.debug(req.body.params);
+
   if(req.body.password){
     bcrypt.hash(req.body.password, null, null, (err, hash) => {
       let code = '';
