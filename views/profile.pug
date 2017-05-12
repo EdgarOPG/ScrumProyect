@@ -56,52 +56,19 @@ block navbar
                   i.fa.fa-envelope
                   |  #{user.email}
         h4 Language and Platform Skills
-        ul.list-group
-          a.list-group-item.inactive-link(href='#')
-            .progress
-              .progress-bar.progress-bar-success(data-placement='top', style='width: 80%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='80', role='progressbar')
-                span.sr-only 80%
-                span.progress-type Java/ JavaEE/ Spring Framework
-            .progress
-              .progress-bar.progress-bar-success(data-placement='top', style='width: 70%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='1', role='progressbar')
-                span.sr-only 70%
-                span.progress-type PHP/ Lamp Stack
-            .progress
-              .progress-bar.progress-bar-success(data-placement='top', style='width: 70%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='1', role='progressbar')
-                span.sr-only 70%
-                span.progress-type JavaScript/ NodeJS/ MEAN stack
-            .progress
-              .progress-bar.progress-bar-warning(data-placement='top', style='width: 65%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='1', role='progressbar')
-                span.sr-only 65%
-                span.progress-type Python/ Numpy/ Scipy
-            .progress
-              .progress-bar.progress-bar-warning(data-placement='top', style='width: 60%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='60', role='progressbar')
-                span.sr-only 60%
-                span.progress-type C
-            .progress
-              .progress-bar.progress-bar-warning(data-placement='top', style='width: 50%;', aria-valuemax='100', aria-valuemin='0', aria-valuenow='50', role='progressbar')
-                span.sr-only 50%
-                span.progress-type C++
-            .progress-meter
-              .meter.meter-left(style='width: 25%;')
-                span.meter-text I suck
-              .meter.meter-left(style='width: 25%;')
-                span.meter-text I know little
-              .meter.meter-right(style='width: 30%;')
-                span.meter-text I'm a guru
-              .meter.meter-right(style='width: 20%;')
-                span.meter-text I''m good
-            .todo-wrapper(ng-controller='TodoCtrl')
-              h2
-                | You've got
-                span.emphasis {{getTotalTodos()}}
-                |  things to do
-              ul
-                li(ng-repeat='todo in todos')
-                  input(type='checkbox', ng-model='todo.done')
-                  span(class='done-{{todo.done}}') {{todo.text}}
-      .bs-callout.bs-callout-danger
-      form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
-        a( type='button', href='./edit/', class='btn btn-primary') Editar
-        input(type='submit', class="btn btn-danger", value='Eliminar')
-    // resume
+          div(ng-controller='ControladorTareas')
+            form()
+              input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
+              select
+                option(value='junior') Junior
+                option(value='senior') Senior
+                option(value='master') Master
+              button(ng-click='addSkill()') Agregar
+            ul
+              li(ng-repeat='tarea in tareas')
+                p {{tarea.texto}} - {{tarea.ranking}}
+          .bs-callout.bs-callout-danger
+          form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
+          a( type='button', href='./edit/', class='btn btn-primary') Editar
+          input(type='submit', class="btn btn-danger", value='Eliminar')
+          // resume

@@ -11,4 +11,15 @@ block navbar
       | Datos de usuario
     // /.panel-heading
     .panel-body
-                include form.pug
+      include form.pug
+        div.form-group(ng-controller='ControladorTareas')
+          form()
+            input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
+            select
+              option(value='junior') Junior
+              option(value='senior') Senior
+              option(value='master') Master
+            button(ng-click='addSkill()') Agregar
+          ul
+            li(ng-repeat='tarea in tareas')
+              p {{tarea.texto}} - {{tarea.ranking}}

@@ -1,24 +1,24 @@
 doctype html
-html(ng-app)
+html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/metisMenu.min.css')
     link(rel='stylesheet', href='/stylesheets/stylish-portfolio.css')
+    script(src='/javascripts/angular/angular.min.js')
+    script(src='/javascripts/angular.js')
 
     // Custom CSS
     link(rel='stylesheet' href='/stylesheets/sb-admin-2.css')
     // Custom Fonts
     link(rel='stylesheet' href='/stylesheets/font-awesome.min.css')
-  body
+  body(ng-app='todoAp')
     div.container
       if(status != undefined)
         div(class=`alert alert-${status.code} alert-dismissable`) #{status.message}
           //a.close(href='#', data-dismiss='alert') x
     block content
-      script(src='../node_modules/angular/angular.js')
-      script(src='../public/javascripts/angular.js')
     // script(src='/javascripts/jquery.min.js')
     // Bootstrap Core JavaScript
     // script(src='/bootstrap/js/bootstrap.min.js')
