@@ -13,14 +13,15 @@ block navbar
     .panel-body
       form(role='form', name='edit-user', id='form-edit-user', method='POST', action=`/users/${user.id}?_method=PUT`)
         include form.pug
-          div.form-group(ng-controller='ControladorTareas')
+          div.form-group(ng-controller='CtrlSkills')
             form()
               input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
               select
                 option(value='junior') Junior
                 option(value='senior') Senior
                 option(value='master') Master
-              button(ng-click='addSkill()') Agregar
-            ul
-              li(ng-repeat='tarea in tareas')
-                p {{tarea.texto}} - {{tarea.ranking}}
+              input(type='button', ng-click='addSkill()', value='Agregar')
+              ul()
+                li(ng-repeat='skill in skills')
+                  p {{skill.description}} - {{skill.ranking}}
+              input(type='button', ng-click='postSkills()', value='Post')

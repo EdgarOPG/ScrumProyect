@@ -56,17 +56,9 @@ block navbar
                   i.fa.fa-envelope
                   |  #{user.email}
         h4 Language and Platform Skills
-          div(ng-controller='ControladorTareas')
-            form()
-              input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
-              select
-                option(value='junior') Junior
-                option(value='senior') Senior
-                option(value='master') Master
-              button(ng-click='addSkill()') Agregar
-            ul
-              li(ng-repeat='tarea in tareas')
-                p {{tarea.texto}} - {{tarea.ranking}}
+          div(ng-controller='CtrlSkills')
+              li(ng-repeat='skill in skills')
+                p {{skill.description}} - {{skill.ranking}}
           .bs-callout.bs-callout-danger
           form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
           a( type='button', href='./edit/', class='btn btn-primary') Editar

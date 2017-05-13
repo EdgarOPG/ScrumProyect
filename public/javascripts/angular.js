@@ -1,16 +1,17 @@
 angular.module('todoAp', [])
-  .controller('ControladorTareas', function($scope, $http) {
-  $scope.tareas = [{texto: 'Ser Super Heroico con AngularJS', ranking: 'Junior'},
-                   {texto: 'Crear una ap con angular', ranking: 'Master'}];
+  .controller('CtrlSkills', function($scope, $http) {
+  $scope.skills = [{description: 'Ser Super Heroico con AngularJS', ranking: 'Junior'},
+                   {description: 'Crear una ap con angular', ranking: 'Master'}];
 
   $scope.addSkill = function() {
     console.log('asadsa')
-    $scope.tareas.push({texto: $scope.skillDescription, ranking: 'Junior'});
+    $scope.skills.push({description: $scope.skillDescription, ranking: 'Junior'});
     $scope.skillDescription = '';
   }
 
   $scope.postSkills = function() {
-    $http.post('/users/', {params: {name: 'ABCXYZ'}})
+    alert("Called");
+    $http.post('/users/', {params: {name: $scope.skills}})
       .success(
           function(success){
               console.log(success)
@@ -19,6 +20,5 @@ angular.module('todoAp', [])
           function(error){
               console.log(error)
           });
-
   }
 });
