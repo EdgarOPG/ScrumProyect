@@ -13,7 +13,9 @@ const UserSchema = Schema({
   curp: String,
   rfc: String,
   domicilio: String,
-  skills: [Skill],
+  skills: [{
+    description: String,
+    ranking: {type:String, enum:['Junior', 'Senior', 'Master']}}],
   email: String,
   password: String
 });

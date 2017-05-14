@@ -129,7 +129,6 @@ function update(req, res, next){
     curp: req.body.curp,
     rfc: req.body.rfc,
     domicilio: req.body.domicilio,
-    skills: skills,
     email: req.body.email,
     password: req.body.password
   };
@@ -153,9 +152,10 @@ function update(req, res, next){
         //res.redirect('/dashboard/');
       }else{
         user.password = hash;
-        User.findByIdAndUpdate({_id:req.params.id }, user, {upsert: true, overwrite: true}, (err, user) => {
+        User.findByIdAndUpdate({_id:req.params.id }, {$set: {skills: skills}}, {upsert: true, overwrite: true}, (err) => {
           next();
           if(err){
+            logger.error(err);
             code = 'danger';
             message = 'No se ha podido guardar el usuario.';
           }else{
