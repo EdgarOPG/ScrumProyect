@@ -120,21 +120,7 @@ function update(req, res, next){
   logger.debug("UPDATE");
   let code = '';
   let message = '';
-  let user = {
-    usuario: req.body.usuario,
-    nombre: req.body.nombre,
-    primerApellido: req.body.primerApellido,
-    segundoApellido: req.body.segundoApellido,
-    fechaNacimiento: req.body.fechaNacimiento,
-    curp: req.body.curp,
-    rfc: req.body.rfc,
-    domicilio: req.body.domicilio,
-    email: req.body.email,
-    password: req.body.password
-  };
-
-  logger.debug(user);
-
+  let password = '';
 
   if(req.body.password){
     bcrypt.hash(req.body.password, null, null, (err, hash) => {
@@ -150,8 +136,18 @@ function update(req, res, next){
         };
         next();
       }else{
-        user.password = hash;
-        User.findByIdAndUpdate({_id:req.params.id }, {$set: {primerApellido: req.body.primerApellido, skills: skills}}, {upsert: true, overwrite: true}, (err, user) => {
+        password = hash;
+        User.findByIdAndUpdate({_id:req.params.id }, {$set: {nombre: req.body.nombre,
+                                                             primerApellido: req.body.primerApellido,
+                                                             segundoApellido: req.body.segundoApellido,
+                                                             fechaNacimiento: req.body.fechaNacimiento,
+                                                             curp: req.body.curp,
+                                                             rfc: req.body.rfc,
+                                                             domicilio: req.body.domicilio,
+                                                             skills: skills,
+                                                             email: req.body.email,
+                                                             password: password
+                                                             }}, {upsert: true, overwrite: true}, (err, user) => {
           next();
           if(err){
             logger.error(err);
