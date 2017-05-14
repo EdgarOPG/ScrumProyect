@@ -56,9 +56,10 @@ block navbar
                   i.fa.fa-envelope
                   |  #{user.email}
         h4 Language and Platform Skills
-          div(ng-controller='CtrlSkills')
-              li(ng-repeat='skill in skills')
-                p {{skill.description}} - {{skill.ranking}}
+          ul
+            each skill in user.skills
+              li
+                p #{skill.description} - #{skill.ranking}
           .bs-callout.bs-callout-danger
           form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
           a( type='button', href='./edit/', class='btn btn-primary') Editar
