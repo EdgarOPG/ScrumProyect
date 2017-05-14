@@ -149,25 +149,14 @@ function update(req, res, next){
           message:message
         };
         next();
-        //res.redirect('/dashboard/');
       }else{
         user.password = hash;
-        User.findByIdAndUpdate({_id:req.params.id }, {$set: {skills: skills}}, {upsert: true, overwrite: true}, (err) => {
+        User.findByIdAndUpdate({_id:req.params.id }, {$set: {primerApellido: req.body.primerApellido, skills: skills}}, {upsert: true, overwrite: true}, (err, user) => {
           next();
           if(err){
             logger.error(err);
-            code = 'danger';
-            message = 'No se ha podido guardar el usuario.';
-          }else{
-            code = 'success';
-            message = 'Usuario creado Correctamente.';
           }
-          res.locals.status = {
-            code:code,
-            message:message
-          };
           next();
-          //res.redirect('/dashboard/');
         });
       }
     });
