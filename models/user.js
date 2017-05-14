@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var Skill = mongoose.model('Skill');
 
 const UserSchema = Schema({
   usuario: String,
@@ -12,7 +13,7 @@ const UserSchema = Schema({
   curp: String,
   rfc: String,
   domicilio: String,
-  skills: {type: Array, "default":[]},
+  skills: [Skill],
   email: String,
   password: String
 });

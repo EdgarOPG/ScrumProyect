@@ -6,9 +6,11 @@ const User = require('../models/user');
 const log4js = require('log4js');
 const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
+var skills = [];
 
 function index(req, res, next){
   logger.debug("INDEX");
+  logger.debug(skills);
 
   res.redirect('/dashboard');
   //console.log(req.session.user);
@@ -42,6 +44,7 @@ function newUser(req, res, next){
 
 function create(req, res, next){
   logger.debug("CREATE USER");
+  logger.debug(req.body.skills);
 
   let user = new User({
     usuario: req.body.usuario,
@@ -55,8 +58,6 @@ function create(req, res, next){
     email: req.body.email,
     password: req.body.password
   });
-
-  logger.debug(req.body.params);
 
   if(req.body.password){
     bcrypt.hash(req.body.password, null, null, (err, hash) => {
@@ -114,9 +115,9 @@ function destroy(req, res, next){
 });
 }
 
+
 function update(req, res, next){
   logger.debug("UPDATE");
-  logger.debug(req.params.id);
   let code = '';
   let message = '';
   let user = {
@@ -128,9 +129,13 @@ function update(req, res, next){
     curp: req.body.curp,
     rfc: req.body.rfc,
     domicilio: req.body.domicilio,
+    skills: skills,
     email: req.body.email,
     password: req.body.password
   };
+
+  logger.debug(user);
+
 
   if(req.body.password){
     bcrypt.hash(req.body.password, null, null, (err, hash) => {
@@ -169,10 +174,16 @@ function update(req, res, next){
   }
 }
 
+function addSkill(req, res, next){
+  skills = req.body.skills;
+  logger.debug(skills);
+}
+
 module.exports = {
   index,
   newUser,
   create,
   update,
-  destroy
+  destroy,
+  addSkill
 };

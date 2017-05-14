@@ -8,6 +8,8 @@ const router = express.Router();
 /* POST para crear un nuevo usuario */
 router.post('/',userController.create);
 
+router.post('/skills', userController.addSkill);
+
 /*PUT actualiza los datos del usuario segun su id */
 router.put('/:id', userController.update);
 

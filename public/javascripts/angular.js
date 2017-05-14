@@ -4,14 +4,12 @@ angular.module('todoAp', [])
                    {description: 'Crear una ap con angular', ranking: 'Master'}];
 
   $scope.addSkill = function() {
-    console.log('asadsa')
     $scope.skills.push({description: $scope.skillDescription, ranking: 'Junior'});
     $scope.skillDescription = '';
   }
 
   $scope.postSkills = function() {
-    alert("Called");
-    $http.post('/users/', {params: {name: $scope.skills}})
+    $http.post('/users/skills', {skills: $scope.skills})
       .success(
           function(success){
               console.log(success)
