@@ -55,7 +55,7 @@ function dashboard(req, res, next){
 function show(req, res, next){
   logger.debug("SHOW");
   User.findOne({_id:req.session.user._id},(err, user) => {
-    res.render('profile', {'user':user});
+    res.render('users/show', {'user':user});
   });
 }
 
