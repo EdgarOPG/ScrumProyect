@@ -9,35 +9,43 @@ const logger = log4js.getLogger();
 var skills = [];
 
 function getAll(req, res, next){
+  logger.debug('GET ALL USERS');
   if(req.session.user){
     //TODO refact
     User.find((err, users) => {
       res.json(users);
     });
+  } else {
+    res.send(403);
+  }
+}
+
+function getMe(req, res, next){
+  logger.debug('GET ME');
+  if(req.session.user){
+    //TODO refact
+      res.json(req.session.user);
+  } else {
+    res.send(403);
   }
 }
 
 function getOne(req, res, next){
+  logger.debug('GET ONE USER');
   if(req.session.user){
     //TODO refact
     User.findById(req.params.id,(err, user) => {
       res.json(user);
     });
+  } else {
+    res.send(403);
   }
 }
 
 function index(req, res, next){
   logger.debug("INDEX");
-  logger.debug(skills);
 
   res.redirect('/dashboard');
-  //console.log(req.session.user);
-
-
-  /*User.find({},(err, users) => {
-    res.render('dashboard', {'users':users, 'user':user,
-     'status': res.locals.status});
-  });*/
 }
 
 /* GET signup view en blanco para crear usuario*/
@@ -90,7 +98,6 @@ function create(req, res, next){
           message:message
         };
         next();
-        //res.redirect('/dashboard/');
       }else{
         user.password = hash;
         user.save((err, object) => {
@@ -106,7 +113,6 @@ function create(req, res, next){
             message:message
           };
           next();
-          //res.redirect('/dashboard/');
         });
       }
     });
@@ -185,6 +191,7 @@ function addSkill(req, res, next){
 module.exports = {
   getAll,
   getOne,
+  getMe,
   newUser,
   create,
   update,

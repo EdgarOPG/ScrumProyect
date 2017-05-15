@@ -10,6 +10,9 @@ const userController = require('../controllers/user');
 router.get('/users',userController.getAll);
 
 /* GET para obtener un usuario segun su id */
+router.get('/users/me',userController.getMe);
+
+/* GET para obtener un usuario segun su id */
 router.get('/users/:id',userController.getOne);
 
 /* Redirect to login page.  */

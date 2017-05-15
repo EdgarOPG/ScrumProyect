@@ -19,9 +19,9 @@ angular.module('todoAp', [])
           });
   }
 
-  $http.get("/users/59188376ad5dc34249198e70")
-    .then(function(users){
-      $scope.skills = users.data.skills;
+  $http.get("/users/me")
+    .then(function(user){
+      $scope.skills = user.data.skills;
   });
 
 });
