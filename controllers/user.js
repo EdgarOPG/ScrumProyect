@@ -189,5 +189,6 @@ module.exports = {
   create,
   update,
   destroy,
-  addSkill
+  addSkill,
+  index
 };

@@ -1,7 +1,6 @@
 angular.module('todoAp', [])
   .controller('CtrlSkills', function($scope, $http) {
-  $scope.skills = [{description: 'Ser Super Heroico con AngularJS', ranking: 'Junior'},
-                   {description: 'Crear una ap con angular', ranking: 'Master'}];
+  $scope.skills = [];
 
   $scope.addSkill = function() {
     $scope.skills.push({description: $scope.skillDescription, ranking: 'Junior'});
@@ -22,7 +21,7 @@ angular.module('todoAp', [])
 
   $http.get("/users/59188376ad5dc34249198e70")
     .then(function(users){
-      console.log(users.data);
+      $scope.skills = users.data.skills;
   });
 
 });

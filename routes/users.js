@@ -18,5 +18,6 @@ router.put('/:id', userController.update);
 router.delete('/:id', userController.destroy);
 
 /* Se declara el next() */
+router.use('/', userController.index);
 
 module.exports = router;
