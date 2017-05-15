@@ -19,4 +19,10 @@ angular.module('todoAp', [])
               console.log(error)
           });
   }
+
+  $http.get("/users/59188376ad5dc34249198e70")
+    .then(function(users){
+      console.log(users.data);
+  });
+
 });

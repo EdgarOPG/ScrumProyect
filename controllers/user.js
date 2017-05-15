@@ -8,6 +8,24 @@ const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
 var skills = [];
 
+function getAll(req, res, next){
+  if(req.session.user){
+    //TODO refact
+    User.find((err, users) => {
+      res.json(users);
+    });
+  }
+}
+
+function getOne(req, res, next){
+  if(req.session.user){
+    //TODO refact
+    User.findById(req.params.id,(err, user) => {
+      res.json(user);
+    });
+  }
+}
+
 function index(req, res, next){
   logger.debug("INDEX");
   logger.debug(skills);
@@ -165,7 +183,8 @@ function addSkill(req, res, next){
 }
 
 module.exports = {
-  index,
+  getAll,
+  getOne,
   newUser,
   create,
   update,
