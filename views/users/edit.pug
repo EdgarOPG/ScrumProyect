@@ -16,12 +16,8 @@ block navbar
           div.form-group(ng-controller='CtrlSkills')
             form()
               input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
-              select
-                option(value='junior') Junior
-                option(value='senior') Senior
-                option(value='master') Master
+              select(ng-model='rankingSelected', ng-options='ranking as ranking.value for ranking in rankings')
               input(type='button', ng-click='addSkill()', value='Agregar')
               ul()
-                li(ng-repeat='skill in skills')
-                  p {{skill.description}} - {{skill.ranking}}
-              input(type='button', ng-click='postSkills()', value='Post')
+                li(ng-repeat='skill in skills') {{skill.description}} - {{skill.ranking}}
+                  input(data-ng-click='removeSkill($index)', value='Eliminar')
