@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const SkillSchema = Schema({
   description: String,
-  range: {type:String, enum:['Junior', 'Senior', 'Master']}
+  ranking: {type:String, enum:['Junior', 'Senior', 'Master']}
 });
 
-module.exports = mongoose.model('Skill': SkillSchema);
+module.exports = mongoose.model('Skill', SkillSchema);

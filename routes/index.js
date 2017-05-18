@@ -6,6 +6,15 @@ var router = express.Router();
 const indexController = require('../controllers/index');
 const userController = require('../controllers/user');
 
+/* GET para obtener a todos los usuarios */
+router.get('/users',userController.getAll);
+
+/* GET para obtener un usuario segun su id */
+router.get('/users/me',userController.getMe);
+
+/* GET para obtener un usuario segun su id */
+router.get('/users/:id',userController.getOne);
+
 /* Redirect to login page.  */
 router.get('/', indexController.redirect);
 

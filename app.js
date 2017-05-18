@@ -7,6 +7,10 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session')
 
+const Skills = require('./models/skill');
+const Users = require('./models/user');
+
+
 //Definicion de las routes
 const index = require('./routes/index');
 const users = require('./routes/users');

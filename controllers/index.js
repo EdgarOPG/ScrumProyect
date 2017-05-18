@@ -27,7 +27,7 @@ function login(req, res, next){
       if(user){
         bcrypt.compare(req.body.password, user.password, (err, resul) => {
           if(resul){
-            req.session.user = user._id;
+            req.session.user = user;
             res.redirect('/dashboard/');
             logger.info('Usuario ' + req.body.usuario + ' inicio sesion');
           }else{
@@ -46,7 +46,7 @@ function login(req, res, next){
 function dashboard(req, res, next){
   if(req.session.user){
     //TODO refact
-    User.findOne({_id:req.session.user}, (err, user) => {
+    User.findOne({_id:req.session.user._id}, (err, user) => {
       res.render('dashboard', {'user':user});
     });
   }
@@ -54,8 +54,8 @@ function dashboard(req, res, next){
 
 function show(req, res, next){
   logger.debug("SHOW");
-  User.findOne({_id:req.session.user},(err, user) => {
-    res.render('profile', {'user':user});
+  User.findOne({_id:req.session.user._id},(err, user) => {
+    res.render('users/show', {'user':user});
   });
 }
 

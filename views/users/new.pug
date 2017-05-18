@@ -9,4 +9,5 @@ block content
           img( class='logo-login',src='/images/logo.png')
           h3.panel-title Por favor ingresa todos tus datos
         .panel-body
-          include form.pug
+          form(role='form', name='add-user', id='form-add-user', method='POST', action='/users/')
+            include form.pug
