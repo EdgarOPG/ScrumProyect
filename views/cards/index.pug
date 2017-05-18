@@ -5,30 +5,65 @@ block navbar
     div(class="col-md-12")
       h1 Usuarios del Sistema
       h2 #{user}
+      br
       table(class="table")
-        thead
-          th history
-          th how
-          th whant
-          th some
-          th accept
-          th given
-          th when
-          th then
-          th
-            a(class="btn btn-success", href='/dashboard/cards/new') Nuevo
+        a(class="btn btn-success", href='/dashboard/cards/new') Nueva Carta
         tbody
           each card in cards
             tr
-              td #{card.history}
-              td #{card.how}
-              td #{card.whant}
-              td #{card.some}
-              td #{card.accept}
-              td #{card.given}
-              td #{card.when}
-              td #{card.then}
-              td
+
+            .principal-card.make-it-flex
+              .card.text-center
+                .card-header
+                  | Card
+                .card-block
+                  h4.col-xs-12.col-sm-4.flex-item-1 NARRATIVA DE LA HISTORIA
+                  p.col-xs-12.col-sm-4.flex-item-3 #{card.history}
+                  p.col-xs-12.col-sm-4.flex-item-5 Prioridad ________
+                  br
+                  br
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-2 Como
+                  p.col-xs-12.col-sm-4.flex-item-4 #{card.how}
+                  p.col-xs-12.col-sm-4.flex-item-6 tamaño ________
+                  br
+                  br
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-2 Quiero
+                  p.col-xs-12.col-sm-4.flex-item-4 #{card.whant}
+                  br
+                  br
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-2 De tal manera
+                  p.col-xs-12.col-sm-4.flex-item-4 #{card.some}
+                  br
+                  br
+                  br
+                .card-block
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-1 CRITERIOS DE ACEPTACIÓN
+                  p.col-xs-12.col-sm-4.flex-item-3 #{card.accept}
+                  br
+                  br
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-2 Dado
+                  p.col-xs-12.col-sm-4.flex-item-4 #{card.given}
+                  br
+                  br
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-2 Cuando
+                  p.col-xs-12.col-sm-4.flex-item-4 #{card.when}
+                  br
+                  br
+                  br
+                  h4.col-xs-12.col-sm-4.flex-item-2 Entonces
+                  p.col-xs-12.col-sm-4.flex-item-4 #{card.then}
+                  br
+                  br
+                  br
+                  br
+                .card-footer.text-muted
+                br
                 a(class="btn btn-warning", href=`./cards/${card.id}/edit`) Editar
                 form(name='delete-card', id='form-delete-card', method='POST', action=`./cards/${card._id}?_method=DELETE`)
                   input(type='submit', class="btn btn-danger", value='Eliminar')
