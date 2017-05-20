@@ -5,21 +5,14 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-<<<<<<< HEAD
 const session = require('express-session')
 const flash    = require('connect-flash');
 
 var passport = require('passport');
 
-=======
-const session = require('express-session');
->>>>>>> 5fde2bf494b48ed8b0125c218bd829a3706f85b8
 
 const Skills = require('./models/skill');
 const Users = require('./models/user');
-
-var passport = require('passport');
-require('./passport')(passport);
 
 
 //Definicion de las routes
@@ -52,22 +45,6 @@ app.use(session({
   resave: true,
   saveUnitialized: true
 }));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter',
-  { successRedirect: '/',
-    failureRedirect: '/login' }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook',
-  { successRedirect: '/',
-    failureRedirect: '/login' }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));

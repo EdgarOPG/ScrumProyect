@@ -7,8 +7,6 @@ var Skill = mongoose.model('Skill');
 const UserSchema = Schema({
   usuario: String,
   nombre: String,
-  provider: String,
-  provider_id: {type: String, unique: true},
   primerApellido: String,
   segundoApellido: String,
   fechaNacimiento: String,
