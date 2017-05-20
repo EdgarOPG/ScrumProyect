@@ -6,6 +6,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session')
+const flash    = require('connect-flash');
+
+var passport = require('passport');
+
 
 const Skills = require('./models/skill');
 const Users = require('./models/user');
@@ -23,6 +27,8 @@ const cards = require('./routes/cards');
 
 const app = express();
 
+require('./config/passport')(passport); // pass passport for configuration
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -36,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
   secret: 'abcd12345',
-  resave: false,
+  resave: true,
   saveUnitialized: true
 }));
 
@@ -52,12 +58,18 @@ app.use('/land', land);
 app.use('/graf', graf);
 app.use('/dashboard/cards', cards);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./routes/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // error handler
 app.use(function(err, req, res, next) {
