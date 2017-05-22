@@ -9,7 +9,7 @@ require('../../config/passport')(passport);
 
     // show the home page (will also have our login links)
     router.get('/', function(req, res) {
-        res.render('index');
+      res.render('index');
     });
 
     router.get('/dashboard', isLoggedIn, function(req, res) {

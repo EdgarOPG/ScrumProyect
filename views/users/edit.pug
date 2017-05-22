@@ -20,11 +20,11 @@ block navbar
           .form-group
             input.form-control(placeholder='Confirmar password', name='confirmarPassword', type='password', value='')
           include form.pug
-          div.form-group(ng-controller='CtrlSkills')
-            form()
-              input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
-              select(ng-model='rankingSelected', ng-options='ranking as ranking.value for ranking in rankings')
-              input(type='button', ng-click='addSkill()', value='Agregar')
-              ul()
-                li(ng-repeat='skill in skills') {{skill.description}} - {{skill.ranking}}
-                  input(data-ng-click='removeSkill($index)', value='Eliminar')
+            div.form-group(ng-controller='CtrlSkills')
+              form()
+                input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
+                select(ng-model='rankingSelected', ng-options='ranking as ranking.value for ranking in rankings')
+                input(type='button', ng-click='addSkill()', value='Agregar')
+                ul()
+                  li(ng-repeat='skill in skills') {{skill.description}} - {{skill.ranking}}
+                    input(data-ng-click='removeSkill($index)', value='Eliminar')

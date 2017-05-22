@@ -30,9 +30,13 @@ angular.module('todoAp', [])
           });
   }
 
-  $http.get("api/users/me")
+  // Esta funcion obtiene los datos del usuario en forma de JSON del endpoint
+  //api/users/me, extrae el arreglo de skills y lo asigna a su variable scope
+
+  $http.get("/api/users/me")
     .then(function(user){
       $scope.skills = user.data.skills;
+      console.log($scope.skills);
   });
 
 });
