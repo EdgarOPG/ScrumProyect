@@ -30,7 +30,7 @@ angular.module('todoAp', [])
           });
   }
 
-  $http.get("/users/me")
+  $http.get("api/users/me")
     .then(function(user){
       $scope.skills = user.data.skills;
   });

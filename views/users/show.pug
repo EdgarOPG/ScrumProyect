@@ -20,23 +20,14 @@ block navbar
               .row
                 .col-xs-12.social-btns
                   .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-google(href='#')
+                    a.btn.btn-google(href='/connect/facebook')
                       i.fa.fa-google
                   .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-facebook(href='#')
+                    a.btn.btn-facebook(href='/connect/google')
                       i.fa.fa-facebook
                   .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-twitter(href='#')
+                    a.btn.btn-twitter(href='/connect/twitter')
                       i.fa.fa-twitter
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-linkedin(href='#')
-                      i.fa.fa-linkedin
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-github(href='#')
-                      i.fa.fa-github
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-stackoverflow(href='#')
-                      i.fa.fa-stack-overflow
             .col-xs-12.col-sm-8
               ul.list-group
                 li.list-group-item
@@ -54,7 +45,7 @@ block navbar
                   //|  000-000-0000
                 li.list-group-item
                   i.fa.fa-envelope
-                  |  #{user.email}
+                  |  #{user.local.email}
         h4 Language and Platform Skills
           ul
             each skill in user.skills

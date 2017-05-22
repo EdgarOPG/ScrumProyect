@@ -1,10 +1,9 @@
-'use strict'
+// load the things we need
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-var Skill = mongoose.model('Skill');
-
-const UserSchema = Schema({
+// define the schema for our user model
+var userSchema = mongoose.Schema({
   usuario: String,
   nombre: String,
   primerApellido: String,
@@ -16,7 +15,6 @@ const UserSchema = Schema({
   skills: [{
     description: String,
     ranking: {type:String, enum:['Junior', 'Senior', 'Master']}}],
-  email: String,
   local            : {
       email        : String,
       password     : String
@@ -42,4 +40,15 @@ const UserSchema = Schema({
 
 });
 
-module.exports = mongoose.model('User', UserSchema);
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
+
+// create the model for users and expose it to our app
+module.exports = mongoose.model('User', userSchema);

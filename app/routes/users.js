@@ -5,8 +5,8 @@ const express = require('express');
 const userController = require('../controllers/user');
 const router = express.Router();
 
-/* POST para crear un nuevo usuario */
-router.post('/',userController.create);
+/* POST para crear un nuevo usuario
+router.post('/',userController.create);*/
 
 /* POST para agregar un array de habilidades */
 router.post('/skills', userController.addSkill);

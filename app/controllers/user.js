@@ -162,6 +162,7 @@ function update(req, res, next){
       }else{
         password = hash;
         User.findByIdAndUpdate({_id:req.params.id }, {$set: {nombre: req.body.nombre,
+                                                             usuario: req.body.usuario,
                                                              primerApellido: req.body.primerApellido,
                                                              segundoApellido: req.body.segundoApellido,
                                                              fechaNacimiento: req.body.fechaNacimiento,

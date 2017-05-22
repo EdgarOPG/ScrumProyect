@@ -12,7 +12,14 @@ block navbar
     // /.panel-heading
     .panel-body
       form(role='form', name='edit-user', id='form-edit-user', method='POST', action=`/users/${user.id}?_method=PUT`)
-        include form.pug
+        fieldset
+          .form-group
+            input.form-control(placeholder='E-mail', name='email', type='email', value=`${user.local.email}`)
+          .form-group
+            input.form-control(placeholder='Password', name='password', type='password', value='')
+          .form-group
+            input.form-control(placeholder='Confirmar password', name='confirmarPassword', type='password', value='')
+          include form.pug
           div.form-group(ng-controller='CtrlSkills')
             form()
               input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
