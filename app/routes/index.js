@@ -5,7 +5,6 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 require('../../config/passport')(passport);
-
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
@@ -26,7 +25,7 @@ require('../../config/passport')(passport);
     });
 
     // SIGNUP =================================
-    // show the signup form
+    /* GET signup view en blanco para crear usuario*/
     router.get('/signup', function(req, res) {
       const user = {
         'usuario':'',
@@ -41,6 +40,11 @@ require('../../config/passport')(passport);
         'password':'',
       }
       res.render('users/new', {'user': user, message: req.flash('signupMessage') });
+    });
+
+    // PROFILE REDIRECT =========================
+    router.get('/profile', isLoggedIn, function(req, res) {
+        res.redirect('/' + req.user._id);
     });
 
     // PROFILE SECTION =========================
@@ -65,7 +69,11 @@ require('../../config/passport')(passport);
         // LOGIN ===============================
         // show the login form
         router.get('/login', function(req, res) {
+          if(req.isAuthenticated()){
+            res.redirect('/dashboard');
+          }else{
             res.render('login', { message: req.flash('loginMessage') });
+          }
         });
 
         // process the login form

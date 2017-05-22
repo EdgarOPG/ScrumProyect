@@ -8,64 +8,10 @@ const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
 var skills = [];
 
-function getAll(req, res, next){
-  logger.debug('GET ALL USERS');
-  if(req.session.user){
-    //TODO refact
-    User.find((err, users) => {
-      res.json(users);
-    });
-  } else {
-    res.send(403);
-  }
-}
-
-function getMe(req, res, next){
-  logger.debug('GET ME');
-  if(req.session.user){
-    //TODO refact
-      res.json(req.session.user);
-  } else {
-    res.send(403);
-  }
-}
-
-function getOne(req, res, next){
-  logger.debug('GET ONE USER');
-  if(req.session.user){
-    //TODO refact
-    User.findById(req.params.id,(err, user) => {
-      res.json(user);
-    });
-  } else {
-    res.send(403);
-  }
-}
-
 function index(req, res, next){
   logger.debug("INDEX");
 
-  res.redirect('/dashboard');
-}
-
-/* GET signup view en blanco para crear usuario*/
-function newUser(req, res, next){
-  logger.debug("NEW USER");
-
-  const user = {
-    'usuario':'',
-    'nombre':'',
-    'primerApellido':'',
-    'segundoApellido':'',
-    'fechaNacimiento':'',
-    'curp':'',
-    'rfc':'',
-    'domicilio':'',
-    'email':'',
-    'password':'',
-  }
-
-  res.render('users/new', {'user':user});
+  res.redirect('/profile');
 }
 
 function create(req, res, next){
@@ -190,11 +136,6 @@ function addSkill(req, res, next){
 }
 
 module.exports = {
-  getAll,
-  getOne,
-  getMe,
-  newUser,
-  create,
   update,
   destroy,
   addSkill,
