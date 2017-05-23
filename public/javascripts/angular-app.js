@@ -98,7 +98,8 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
   $http.get("/api/projects/" + id)
     .then(function(projects){
       $scope.projects = projects.data;
-      console.log($scope.projects);
+      $scope.collaborators = $scope.projects.equipoDesarrollo;
+     console.log($scope.projects);
   });
 
 });
