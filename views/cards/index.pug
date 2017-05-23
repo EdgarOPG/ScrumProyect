@@ -18,14 +18,13 @@ block navbar
                   | Card
                 .card-block
                   h4.col-xs-12.col-sm-4.flex-item-1 NARRATIVA DE LA HISTORIA
+                  br
                   p.col-xs-12.col-sm-4.flex-item-3 #{card.history}
-                  p.col-xs-12.col-sm-4.flex-item-5 Prioridad ________
                   br
                   br
                   br
                   h4.col-xs-12.col-sm-4.flex-item-2 Como
                   p.col-xs-12.col-sm-4.flex-item-4 #{card.how}
-                  p.col-xs-12.col-sm-4.flex-item-6 tamaño ________
                   br
                   br
                   br
@@ -61,9 +60,13 @@ block navbar
                   br
                   br
                   br
+                  p.col-xs-12.col-sm-4.flex-item-2 Prioridad
+                  p.col-xs-12.col-sm-4.flex-item-5 #{card.fibonacci}
+                  br
                   br
                 .card-footer.text-muted
                 br
+
                 a(class="btn btn-warning", href=`./cards/${card.id}/edit`) Editar
                 form(name='delete-card', id='form-delete-card', method='POST', action=`./cards/${card._id}?_method=DELETE`)
                   input(type='submit', class="btn btn-danger", value='Eliminar')

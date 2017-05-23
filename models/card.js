@@ -11,7 +11,8 @@ const CardSchema = Schema({
   accept: String,
   given: String,
   when: String,
-  then: String
+  then: String,
+  fibonacci: String
 });
 
 module.exports = mongoose.model('Card', CardSchema);

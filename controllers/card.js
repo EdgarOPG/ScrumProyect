@@ -27,7 +27,9 @@ function newCard(req, res, next){
   'accept':'',
   'given':'',
   'when':'',
-  'then':''};
+  'then':'',
+  'fibonacci':''
+};
 
   var user = "";
   if(req.session.user){
@@ -47,7 +49,9 @@ function create(req, res, next){
     accept: req.body.accept,
     given: req.body.given,
     when: req.body.when,
-    then: req.body.then
+    then: req.body.then,
+    fibonacci: req.body.fibonacci
+
   });
   card.save((err, object)=>{
     if(err){
@@ -116,7 +120,9 @@ function update(req, res, next){
     accept: req.body.accept,
     given: req.body.given,
     when: req.body.when,
-    then: req.body.then
+    then: req.body.then,
+    fibonacci: req.body.fibonacci
+
   };
   Card.update({_id:req.params.id},{$set: card}, (err,card) =>{
     next();
@@ -133,13 +139,13 @@ function destroy(req, res, next){
     if (!err) {
       res.locals.status = {
         code:'error',
-        message:'El Card no fue eliminado.'
+        message:'Card fue eliminado Correctamente.'
       };
     }
     else {
       res.locals.status = {
         code:'success',
-        message:'Card eliminado Correctamente.'
+        message:'Card no fue eliminado.'
       };
     }
 });
