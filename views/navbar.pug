@@ -30,16 +30,16 @@ block content
                   i.fa.fa-search
             // /input-group
           li
-            a.profile-sidebar(href=`/${user._id}/`)
+            a.profile-sidebar(href=`/profile/${user._id}/`)
               .profile-userpic
                 img.img-responsive(src='/images/profile.jpg', alt='')
                 .profile-usertitle
                   .profile-usertitle-name #{user.usuario}
                   .profile-usertitle-job  Developer
           li
-            a(href='/dashboard/')
+            a(href='/projects/')
               i.fa.fa-dashboard.fa-fw
-              |  Dashboard
+              |  Projects
       // /.sidebar-collapse
     // /.navbar-static-side
   // Page Content

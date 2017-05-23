@@ -1,0 +1,23 @@
+extends ../navbar
+
+block navbar
+  .container
+    .row
+      .col-md-8.col-md-offset-1
+          .panel-heading
+            img( class='logo-login',src='/images/logo.png')
+            h3.panel-title Por favor ingresa los datos del proyecto
+          .panel-body
+            form(role='form', name='update-project', id='form-update-project', method='POST', action=`/dashboard/${project._id}?_method=PUT`)
+              fieldset
+                .form-group
+                  input.form-control(placeholder='Proyecto', name='proyecto', type='text', autofocus='' , value=`${project.proyecto}`)
+                .form-group
+                  input.form-control(placeholder='Nombre', name='nombre', type='text' , value=`${project.nombre}`)
+                .form-group
+                  input.form-control(placeholder='Fecha de Solicitud', name='fechaSolicitud', type='date' , value=`${project.fechaSolicitud}`)
+                .form-group
+                  input.form-control(placeholder='Fecha de Arranque', name='fechaArranque', type='date' , value=`${project.fechaArranque}`)
+                .form-group
+                  input.form-control(placeholder='Descripcion', name='descripcion', type='text' , value=`${project.descripcion}`)
+                input.btn.btn-lg.btn-success.btn-block(type='submit', value='Actualizar Proyecto')

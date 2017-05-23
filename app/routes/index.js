@@ -4,25 +4,18 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const indexController = require('../controllers/index');
 require('../../config/passport')(passport);
 // normal routes ===============================================================
 
-    // show the home page (will also have our login links)
-    router.get('/', function(req, res) {
-      res.render('index');
-    });
+    // GET form de signin
+    router.get('/', indexController.singin);
 
-    router.get('/dashboard', isLoggedIn, function(req, res) {
-        res.render('dashboard', {
-            user : req.user
-        });
-    });
+    // GET view dashboard
+    router.get('/dashboard', indexController.dashboard);
 
-    // LOGOUT ==============================
-    router.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+    // Get logout
+    router.get('/logout', indexController.logout);
 
     // SIGNUP =================================
     /* GET signup view en blanco para crear usuario*/
@@ -44,21 +37,19 @@ require('../../config/passport')(passport);
 
     // PROFILE REDIRECT =========================
     router.get('/profile', isLoggedIn, function(req, res) {
-        res.redirect('/' + req.user._id);
+        res.redirect('/profile/' + req.user._id + '/');
     });
 
     // PROFILE SECTION =========================
-    router.get('/:id', isLoggedIn, function(req, res) {
+    router.get('/profile/:id', isLoggedIn, function(req, res) {
         res.render('users/show', {
             user : req.user
         });
     });
 
     // PROFILE EDITION =========================
-    router.get('/:id/edit', isLoggedIn, function(req, res) {
-        res.render('users/edit', {
-            user : req.user
-        });
+    router.get('/profile/:id/edit', isLoggedIn, function(req, res) {
+        res.render('users/edit', {user : req.user});
     });
 
 // =============================================================================
@@ -68,12 +59,8 @@ require('../../config/passport')(passport);
     // locally --------------------------------
         // LOGIN ===============================
         // show the login form
-        router.get('/login', function(req, res) {
-          if(req.isAuthenticated()){
-            res.redirect('/dashboard');
-          }else{
-            res.render('login', { message: req.flash('loginMessage') });
-          }
+        router.get('/login',isLoggedIn, function(req, res) {
+            res.redirect('/profile');
         });
 
         // process the login form

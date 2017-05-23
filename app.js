@@ -4,7 +4,7 @@
 // get all the tools we need
 const express  = require('express');
 const app      = express();
-const port     = process.env.PORT || 3000;
+const port     = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash    = require('connect-flash');
@@ -22,6 +22,7 @@ const configDB = require('./config/database.js');
 
 const index = require('./app/routes/index');
 const users = require('./app/routes/users');
+const projects = require('./app/routes/projects');
 
 const api = require('./app/routes/api');
 
@@ -56,6 +57,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 app.use('/', index);
 app.use('/users', users);
+app.use('/projects', projects);
+
 app.use('/api', api);
 
 // launch ======================================================================
