@@ -46,7 +46,7 @@ function create(req, res, next){
 	  descripcion: req.body.descripcion,
 	  scrumMaster: '',
 	  productOwner: req.user._id,
-	  equipoDesarrollo: ''
+	  equipoDesarrollo: collaborators
   });
 
 let code = '';
@@ -111,7 +111,8 @@ if(req.isAuthenticated()){
      nombre: req.body.nombre,
      fechaSolicitud: req.body.fechaSolicitud,
      fechaArranque: req.body.fechaArranque,
-     descripcion: req.body.descripcion
+     descripcion: req.body.descripcion,
+     equipoDesarrollo: collaborators
    }},
    (err, project) => {
            if(err){
@@ -149,11 +150,21 @@ function destroy(req, res, next){
   res.redirect('/projects/');
 }
 
-function addCollaborators(req, res, next){
-  collaborators = req.body.collaborators;
-  logger.debug(collaborators);
+function toObjectId(array){
+  let ObjectIds = [];
+  for(let i in array){
+    console.log(array[i]);
+    let temp = new ObjectId(array[i]);
+    console.log(temp);
+    ObjectIds.push(temp);
+  }
+  return ObjectIds;
 }
 
+function addCollaborators(req, res, next){
+  collaborators = toObjectId(req.body.collaborators);
+  logger.debug(collaborators);
+}
 
 module.exports = {
   index,

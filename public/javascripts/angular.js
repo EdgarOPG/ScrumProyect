@@ -47,6 +47,14 @@ app.controller('CtrlCollaborators', function($scope, $http){
   $scope.users = [];
   $scope.collaborators = [];
 
+  function getIds(){
+    let collaborators = [];
+    for(let i in $scope.collaborators){
+      collaborators.push($scope.collaborators[i]._id);
+    }
+    return collaborators;
+  };
+
   $scope.addCollaborator = function(user) {
     $scope.collaborators.push(user);
     $scope.postCollaborators();
@@ -58,7 +66,9 @@ app.controller('CtrlCollaborators', function($scope, $http){
   }
 
   $scope.postCollaborators = function() {
-    $http.post('/projects/collaborators', {collaborators: $scope.collaborators})
+    let collaborators = [];
+    collaborators = getIds();
+    $http.post('/projects/collaborators', {collaborators: collaborators})
       .success(
           function(success){
               console.log(success)
