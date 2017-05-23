@@ -3,12 +3,13 @@
 'use strict'
 const express = require('express');
 const User = require('../models/user');
+const Project = require('../models/project');
 const log4js = require('log4js');
 const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
 var skills = [];
 
-function getAll(req, res, next){
+function getAllUsers(req, res, next){
   logger.debug('GET ALL USERS');
   if(req.isAuthenticated()){
     //TODO refact
@@ -30,7 +31,7 @@ function getMe(req, res, next){
   }
 }
 
-function getOne(req, res, next){
+function getUserById(req, res, next){
   logger.debug('GET ONE USER');
   if(req.isAuthenticated()){
     //TODO refact
@@ -42,14 +43,21 @@ function getOne(req, res, next){
   }
 }
 
-function addSkill(req, res, next){
-  skills = req.body.skills;
-  logger.debug(skills);
+function getProjectById(req, res, next){
+  logger.debug('GET ONE PROYECT');
+  if(req.isAuthenticated()){
+    //TODO refact
+    Project.findById(req.params.id,(err, project) => {
+      res.json(project);
+    });
+  } else {
+    res.send(403);
+  }
 }
 
 module.exports = {
-  getAll,
-  getOne,
+  getAllUsers,
+  getUserById,
   getMe,
-  addSkill
+  getProjectById
 };
