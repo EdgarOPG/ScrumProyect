@@ -8,7 +8,7 @@ block navbar
             img( class='logo-login',src='/images/logo.png')
             h3.panel-title Por favor ingresa los datos del proyecto
           .panel-body
-            form(role='form', name='update-project', id='form-update-project', method='POST', action=`/dashboard/${project._id}?_method=PUT`)
+            form(role='form', name='update-project', id='form-update-project', method='POST', action=`/projects/${project._id}?_method=PUT`)
               fieldset
                 .form-group
                   input.form-control(placeholder='Proyecto', name='proyecto', type='text', autofocus='' , value=`${project.proyecto}`)

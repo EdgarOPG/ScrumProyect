@@ -35,10 +35,8 @@ function newProject(req, res, next) {
     };
   }
 
-
 function create(req, res, next){
   logger.debug("CREATE PROJECT");
-	logger.debug(req.user._id);
   let project = new Project({
     proyecto: req.body.proyecto,
 	  nombre: req.body.nombre,
@@ -66,10 +64,7 @@ let message = '';
             message:message
           };
            if(req.isAuthenticated()){
-              //TODO refact
-                Project.find({productOwner: new ObjectId(req.user._id)}, (err, projects)=>{
-                res.render('projects/list', {'user':req.user, 'projects':projects})
-            });
+              res.redirect('/projects/');
           }
         });
 }
@@ -96,7 +91,7 @@ function edit(req, res, next){
   logger.debug("EDIT");
 
   if(req.isAuthenticated()){
-      Project.findOne({_id:req.params.id},(err, project)=>{
+      Project.findOne({_id:ObjectId(req.params.id)},(err, project)=>{
         res.render('projects/edit', {'project':project, 'user':req.user})
     });
   }
@@ -108,32 +103,29 @@ function update(req, res, next){
 let code = '';
 let message = '';
 
- Project.update({_id:req.params.id},
-  {$set: {
-    proyecto: req.body.proyecto,
-    nombre: req.body.nombre,
-    fechaSolicitud: req.body.fechaSolicitud,
-    fechaArranque: req.body.fechaArranque,
-    descripcion: req.body.descripcion
-  }},
-  (err, project) => {
-          if(err){
-            code = 'danger';
-            message = 'No se ha podido actualizar el proyecto.';
-          }else{
-            code = 'success';
-            message = 'Proyecto actualizado Correctamente.';
-          }
-          res.locals.status = {
-            code:code,
-            message:message
-          };
-           if(req.isAuthenticated()){
-                Project.find({productOwner: new ObjectId(req.user._id)}, (err, projects)=>{
-                res.render('projects/list', {'user':req.user, 'projects':projects})
-              });
-          }
-        });
+if(req.isAuthenticated()){
+  logger.debug(req.params.id);
+  Project.findByIdAndUpdate({_id:req.params.id}, {$set: {
+     proyecto: req.body.proyecto,
+     nombre: req.body.nombre,
+     fechaSolicitud: req.body.fechaSolicitud,
+     descripcion: req.body.descripcion
+   }},
+   (err, project) => {
+           if(err){
+             code = 'danger';
+             message = 'No se ha podido actualizar el proyecto.';
+           }else{
+             code = 'success';
+             message = 'Proyecto actualizado Correctamente.';
+           }
+           res.locals.status = {
+             code:code,
+             message:message
+           };
+            res.redirect('/projects/');
+         });
+}
 }
 
 function destroy(req, res, next){
