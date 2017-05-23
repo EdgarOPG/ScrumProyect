@@ -124,7 +124,7 @@ function update(req, res, next){
     fibonacci: req.body.fibonacci
 
   };
-  Card.update({_id:req.params.id},{$set: card}, (err,card) =>{
+  Card.update({_id:req.params.id},{$set: cards}, (err,card) =>{
     next();
   });
 
