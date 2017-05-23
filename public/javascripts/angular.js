@@ -1,5 +1,6 @@
-angular.module('todoAp', [])
-  .controller('CtrlSkills', function($scope, $http) {
+const app = angular.module('scrumApp', []);
+
+app.controller('CtrlSkills', function($scope, $http) {
 
   $scope.skills = [];
 
@@ -37,6 +38,41 @@ angular.module('todoAp', [])
     .then(function(user){
       $scope.skills = user.data.skills;
       console.log($scope.skills);
+  });
+
+});
+
+app.controller('CtrlCollaborators', function($scope, $http){
+
+  $scope.users = [];
+  $scope.collaborators = [];
+
+  $scope.addCollaborator = function(user) {
+    $scope.collaborators.push(user);
+    $scope.postCollaborators();
+  }
+
+  $scope.removeCollaborator = function(index){
+    $scope.collaborators.splice(index, 1);
+    $scope.postCollaborators();
+  }
+
+  $scope.postCollaborators = function() {
+    $http.post('/projects/collaborators', {collaborators: $scope.collaborators})
+      .success(
+          function(success){
+              console.log(success)
+          })
+      .error(
+          function(error){
+              console.log(error)
+          });
+  }
+
+  $http.get("/api/users")
+    .then(function(users){
+      $scope.users = users.data;
+      console.log($scope.users);
   });
 
 });

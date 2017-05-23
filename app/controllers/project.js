@@ -7,6 +7,7 @@ const Project = require('../models/project');
 const log4js = require('log4js');
 const logger = log4js.getLogger();
 const ObjectId = require('mongoose').Types.ObjectId;
+var collaborators = [];
 
 function index(req, res, next){
   if(req.isAuthenticated()){
@@ -91,7 +92,7 @@ function edit(req, res, next){
   logger.debug("EDIT");
 
   if(req.isAuthenticated()){
-      Project.findOne({_id:ObjectId(req.params.id)},(err, project)=>{
+      Project.findOne({_id: ObjectId(req.params.id)},(err, project)=>{
         res.render('projects/edit', {'project':project, 'user':req.user})
     });
   }
@@ -105,10 +106,11 @@ let message = '';
 
 if(req.isAuthenticated()){
   logger.debug(req.params.id);
-  Project.findByIdAndUpdate({_id:req.params.id}, {$set: {
+  Project.findByIdAndUpdate({_id: ObjectId(req.params.id)}, {$set: {
      proyecto: req.body.proyecto,
      nombre: req.body.nombre,
      fechaSolicitud: req.body.fechaSolicitud,
+     fechaArranque: req.body.fechaArranque,
      descripcion: req.body.descripcion
    }},
    (err, project) => {
@@ -130,7 +132,7 @@ if(req.isAuthenticated()){
 
 function destroy(req, res, next){
   logger.debug("DESTROY");
-  Project.remove({ _id: req.params.id }, (err) => {
+  Project.remove({ _id: ObjectId(req.params.id)}, (err) => {
     if (err) {
         res.locals.status = {
           code:'error',
@@ -144,9 +146,14 @@ function destroy(req, res, next){
         };
       }
   });
-  next();
-
+  res.redirect('/projects/');
 }
+
+function addCollaborators(req, res, next){
+  collaborators = req.body.collaborators;
+  logger.debug(collaborators);
+}
+
 
 module.exports = {
   index,

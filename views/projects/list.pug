@@ -33,3 +33,5 @@ block navbar
                 td
                   a(class="btn btn-primary", href=`/projects/${project._id}`) Ver
                   a(class="btn btn-warning", href=`/projects/${project._id}/edit`) Editar
+                  form.form-button(name='delete-project', id='form-delete-project', method='POST', action=`/projects/${project._id}?_method=DELETE`)
+                    input(type='submit', class="btn btn-danger", value='X')

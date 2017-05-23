@@ -1,8 +1,12 @@
+//Routes
 'use strict'
 
 const projectController = require('../controllers/project');
 const express = require('express');
 const router = express.Router();
+
+/* POST para agregar un array de habilidades */
+router.post('/collaborators', projectController.addCollaborators);
 
 /* Get dashboard */
 router.get('/', projectController.index);
@@ -27,12 +31,5 @@ router.get('/:id', projectController.show);
 
 /* DELETE para eliminar proyecto*/
 router.delete('/:id', projectController.destroy );
-
-/* GET para añadir colaboradores
-router.get('/:id/addCollaborators', projectController.addCollaborators);
-
-/* use dashboard
-router.use('/', projectController.index);
-*/
 
 module.exports = router;

@@ -8,7 +8,7 @@ const ProjectSchema = Schema({
   proyecto: String,
   nombre: String,
   fechaSolicitud: String,
-  fechaArranque: { type: Date, default: Date.now },
+  fechaArranque: String,
   descripcion: String,
   scrumMaster: String,
   productOwner: {

@@ -11,6 +11,12 @@ a {
   margin-right: 15px;
 }
 
+.form-button{
+  display: inline!important;
+  margin: 0;
+  padding: 0;
+}
+
 .my-form{
   width: 60%;
   height: 34px;

@@ -20,4 +20,17 @@ block navbar
                   input.form-control(placeholder='Fecha de Arranque', name='fechaArranque', type='date' , value=`${project.fechaArranque}`)
                 .form-group
                   input.form-control(placeholder='Descripcion', name='descripcion', type='text' , value=`${project.descripcion}`)
-                input.btn.btn-lg.btn-success.btn-block(type='submit', value='Actualizar Proyecto')
+                .form-group
+                  div(ng-controller='CtrlCollaborators')
+                    .form-group
+                      select(ng-model='userSelected', ng-options='user as user.usuario for user in users')
+                      input.btn.btn-primary(type='button', ng-click='addCollaborator(user)', value='Agregar')
+                    .form-group
+                      .row
+                        table(class="table")
+                          tbody
+                            tr(ng-repeat='collaborator in collaborators')
+                              td {{collaborator.nombre}} {{collaborator.primerApellido}}
+                              td
+                                input.btn.btn-danger(data-ng-click='removeCollaborator($index)', value='Eliminar')
+                input.btn.btn-lg.btn-success.btn-block(type='submit', value='Actualizar')
