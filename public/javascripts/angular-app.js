@@ -1,5 +1,12 @@
 const app = angular.module('scrumApp', []);
 
+app.config(function($locationProvider) {
+  $locationProvider.html5Mode({
+                                enabled: true,
+                                requireBase: false
+                              });
+});
+
 app.controller('CtrlSkills', function($scope, $http) {
 
   $scope.skills = [];
@@ -42,8 +49,11 @@ app.controller('CtrlSkills', function($scope, $http) {
 
 });
 
-app.controller('CtrlCollaborators', function($scope, $http){
+app.controller('CtrlCollaborators', function($scope, $http, $location){
+  let path = $location.path();
+  let id = path.split('/')[2]
 
+  $scope.projects = {};
   $scope.users = [];
   $scope.collaborators = [];
 
@@ -83,6 +93,12 @@ app.controller('CtrlCollaborators', function($scope, $http){
     .then(function(users){
       $scope.users = users.data;
       console.log($scope.users);
+  });
+
+  $http.get("/api/projects/" + id)
+    .then(function(projects){
+      $scope.projects = projects.data;
+      console.log($scope.projects);
   });
 
 });

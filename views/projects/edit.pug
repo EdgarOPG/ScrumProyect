@@ -1,36 +1,39 @@
 extends ../navbar
 
 block navbar
-  .container
-    .row
-      .col-md-8.col-md-offset-1
-          .panel-heading
-            img( class='logo-login',src='/images/logo.png')
-            h3.panel-title Por favor ingresa los datos del proyecto
-          .panel-body
-            form(role='form', name='update-project', id='form-update-project', method='POST', action=`/projects/${project._id}?_method=PUT`)
-              fieldset
-                .form-group
-                  input.form-control(placeholder='Proyecto', name='proyecto', type='text', autofocus='' , value=`${project.proyecto}`)
-                .form-group
-                  input.form-control(placeholder='Nombre', name='nombre', type='text' , value=`${project.nombre}`)
-                .form-group
-                  input.form-control(placeholder='Fecha de Solicitud', name='fechaSolicitud', type='date' , value=`${project.fechaSolicitud}`)
-                .form-group
-                  input.form-control(placeholder='Fecha de Arranque', name='fechaArranque', type='date' , value=`${project.fechaArranque}`)
-                .form-group
-                  input.form-control(placeholder='Descripcion', name='descripcion', type='text' , value=`${project.descripcion}`)
-                .form-group
-                  div(ng-controller='CtrlCollaborators')
-                    .form-group
-                      select(ng-model='userSelected', ng-options='user as user.usuario for user in users track by user._id')
-                      input.btn.btn-primary(type='button', ng-click='addCollaborator(userSelected)', value='Agregar')
-                    .form-group
-                      .row
-                        table(class="table")
-                          tbody
-                            tr(ng-repeat='collaborator in collaborators')
-                              td {{collaborator.nombre}} {{collaborator.primerApellido}}
-                              td
-                                input.btn.btn-danger(data-ng-click='removeCollaborator($index)', value='Eliminar')
-                input.btn.btn-lg.btn-success.btn-block(type='submit', value='Actualizar')
+  h1.page-header Edit project
+  // /.col-lg-12
+  // /.row
+  .row
+  .col-lg-12
+  .panel.panel-default
+    .panel-heading
+      | Datos de usuario
+    // /.panel-heading
+    .panel-body
+      form(role='form', name='update-project', id='form-update-project', method='POST', action=`/projects/${project._id}?_method=PUT`)
+        fieldset
+          .form-group
+            input.form-control(placeholder='Proyecto', name='proyecto', type='text', autofocus='' , value=`${project.proyecto}`)
+          .form-group
+            input.form-control(placeholder='Nombre', name='nombre', type='text' , value=`${project.nombre}`)
+          .form-group
+            input.form-control(placeholder='Fecha de Solicitud', name='fechaSolicitud', type='date' , value=`${project.fechaSolicitud}`)
+          .form-group
+            input.form-control(placeholder='Fecha de Arranque', name='fechaArranque', type='date' , value=`${project.fechaArranque}`)
+          .form-group
+            input.form-control(placeholder='Descripcion', name='descripcion', type='text' , value=`${project.descripcion}`)
+          .form-group
+            div.skills-table(ng-controller='CtrlCollaborators')
+              .form-group
+                select(ng-model='userSelected', ng-options='user as user.usuario for user in users track by user._id')
+                input.btn.btn-primary(type='button', ng-click='addCollaborator(userSelected)', value='Agregar')
+              .form-group
+                .row
+                  table(class="table")
+                    tbody
+                      tr(ng-repeat='collaborator in collaborators')
+                        td {{collaborator.nombre}} {{collaborator.primerApellido}}
+                        td
+                          input.btn.btn-danger(data-ng-click='removeCollaborator($index)', value='Eliminar')
+          input.btn.btn-lg.btn-success.btn-block(type='submit', value='Actualizar')

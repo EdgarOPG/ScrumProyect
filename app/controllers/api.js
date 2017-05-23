@@ -7,6 +7,7 @@ const Project = require('../models/project');
 const log4js = require('log4js');
 const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
+const ObjectId = require('mongoose').Types.ObjectId;
 var skills = [];
 
 function getAllUsers(req, res, next){
@@ -47,9 +48,11 @@ function getProjectById(req, res, next){
   logger.debug('GET ONE PROYECT');
   if(req.isAuthenticated()){
     //TODO refact
-    Project.findById(req.params.id,(err, project) => {
-      res.json(project);
-    });
+    Project.findById({_id:ObjectId(req.params.id)})
+      .populate('productOwner equipoDesarrollo')
+      .exec(function(err, project){
+        res.json(project);
+      });
   } else {
     res.send(403);
   }
