@@ -30,7 +30,7 @@ block navbar
                 .row
                   table(class="table")
                     tbody
-                      tr(ng-repeat='collaborator in collaborators')
+                      tr(ng-repeat='collaborator in collaboratorss')
                         td {{collaborator.nombre}} {{collaborator.primerApellido}}
                         td
                           input.btn.btn-danger(data-ng-click='removeCollaborator($index)', value='Eliminar')

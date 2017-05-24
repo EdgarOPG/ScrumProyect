@@ -55,23 +55,23 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
 
   $scope.project = {};
   $scope.users = [];
-  $scope.collaborators = [];
+  $scope.collaboratorss = [];
 
   function getIds(){
     let collaborators = [];
-    for(let i in $scope.collaborators){
-      collaborators.push($scope.collaborators[i]._id);
+    for(let i in $scope.collaboratorss){
+      collaborators.push($scope.collaboratorss[i]._id);
     }
     return collaborators;
   };
 
   $scope.addCollaborator = function(user) {
-    $scope.collaborators.push(user);
+    $scope.collaboratorss.push(user);
     $scope.postCollaborators();
   }
 
   $scope.removeCollaborator = function(index){
-    $scope.collaborators.splice(index, 1);
+    $scope.collaboratorss.splice(index, 1);
     $scope.postCollaborators();
   }
 
@@ -120,3 +120,4 @@ app.controller('CtrlProjects', function($scope, $http, $location){
      console.log($scope.project);
   });
 });
+
