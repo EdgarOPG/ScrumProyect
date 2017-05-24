@@ -53,7 +53,7 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
   let path = $location.path();
   let id = path.split('/')[2]
 
-  $scope.projects = {};
+  $scope.project = {};
   $scope.users = [];
   $scope.collaborators = [];
 
@@ -96,10 +96,27 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
   });
 
   $http.get("/api/projects/" + id)
-    .then(function(projects){
-      $scope.projects = projects.data;
-      $scope.collaborators = $scope.projects.equipoDesarrollo;
-     console.log($scope.projects);
+    .then(function(project){
+      $scope.projects = project.data;
+      $scope.collaborators = $scope.project.equipoDesarrollo;
+     console.log($scope.project);
   });
 
+});
+
+app.controller('CtrlProjects', function($scope, $http, $location){
+
+  let path = $location.path();
+  let id = path.split('/')[2]
+
+  $scope.project = {};
+  $scope.users = [];
+  $scope.collaborators = [];
+
+  $http.get("/api/projects/" + id)
+    .then(function(project){
+      $scope.project = project.data;
+      $scope.collaborators = $scope.project.equipoDesarrollo;
+     console.log($scope.project);
+  });
 });

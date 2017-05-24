@@ -17,6 +17,12 @@ a {
   padding: 0;
 }
 
+.table-list{
+  list-style-type: none;
+  list-style-position: inside;
+  padding-left:0;
+}
+
 .my-form{
   width: 60%;
   height: 34px;
