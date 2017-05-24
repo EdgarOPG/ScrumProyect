@@ -13,22 +13,6 @@ block navbar
     .panel-body
       #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
         .row
-          .col-sm-6
-            #dataTables-example_length.dataTables_length
-              label
-                | Show
-                select.form-control.input-sm(name='dataTables-example_length', aria-controls='dataTables-example')
-                  option(value='10') 10
-                  option(value='25') 25
-                  option(value='50') 50
-                  option(value='100') 100
-                |  entries
-          .col-sm-6
-            #dataTables-example_filter.dataTables_filter
-              label
-                | Search:
-                input.form-control.input-sm(placeholder='', aria-controls='dataTables-example', type='search')
-        .row
           .col-sm-12
             table#dataTables-example.table.table-striped.table-bordered.table-hover.dataTable.no-footer.dtr-inline(role='grid', aria-describedby='dataTables-example_info', style='width: 100%;', width='100%')
               thead
