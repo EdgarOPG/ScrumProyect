@@ -2,12 +2,16 @@
 
 'use strict'
 const express = require('express');
-const User = require('../models/user');
-const Project = require('../models/project');
 const log4js = require('log4js');
 const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
+
+const User = require('../models/user');
+const Project = require('../models/project');
+const UserStory = require('../models/userStory');
+
 const ObjectId = require('mongoose').Types.ObjectId;
+
 var skills = [];
 
 function getAllUsers(req, res, next){
@@ -58,9 +62,24 @@ function getProjectById(req, res, next){
   }
 }
 
+
+function getUsersStoriesById(req, res, next){
+  logger.debug('GET ONE PROYECT');
+  if(req.isAuthenticated()){
+    //TODO refact
+    UserStory.find({'project':ObjectId(req.params.id)})
+      .exec(function(err, userStories){
+        res.json(userStories);
+      });
+  } else {
+    res.send(403);
+  }
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   getMe,
-  getProjectById
+  getProjectById,
+  getUsersStoriesById
 };
