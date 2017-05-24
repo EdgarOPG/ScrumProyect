@@ -10,7 +10,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 function index(req, res, next) {
   if(req.isAuthenticated()) {
-  		res.render('dashboard', {'user': req.user})
+  		res.render('projects/dashboard', {'user': req.user})
   }
 }
 

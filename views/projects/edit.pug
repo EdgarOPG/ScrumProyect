@@ -14,8 +14,6 @@ block navbar
       form(role='form', name='update-project', id='form-update-project', method='POST', action=`/projects/${project._id}?_method=PUT`)
         fieldset
           .form-group
-            input.form-control(placeholder='Proyecto', name='proyecto', type='text', autofocus='' , value=`${project.proyecto}`)
-          .form-group
             input.form-control(placeholder='Nombre', name='nombre', type='text' , value=`${project.nombre}`)
           .form-group
             input.form-control(placeholder='Fecha de Solicitud', name='fechaSolicitud', type='date' , value=`${project.fechaSolicitud}`)

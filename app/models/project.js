@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const User = mongoose.model('User');
 
 const ProjectSchema = Schema({
-  proyecto: String,
   nombre: String,
   fechaSolicitud: String,
   fechaArranque: String,

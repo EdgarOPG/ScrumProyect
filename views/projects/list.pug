@@ -15,7 +15,6 @@ block navbar
         .row
         table(class="table")
           thead
-            th Proyecto
             th Nombre
             th Fecha Solicitud
             th Fecha Arranque
@@ -25,7 +24,6 @@ block navbar
           tbody
             each project in projects
               tr
-                td #{project.proyecto}
                 td #{project.nombre}
                 td #{project.fechaSolicitud}
                 td #{project.fechaArranque}

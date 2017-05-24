@@ -23,7 +23,6 @@ function newProject(req, res, next) {
   if(req.isAuthenticated()){
     //TODO refact
   const project = {
-    'proyecto':'',
     'nombre':'',
     'fechaSollicitud':'',
     'fechaArranque':'',
@@ -39,7 +38,6 @@ function newProject(req, res, next) {
 function create(req, res, next){
   logger.debug("CREATE PROJECT");
   let project = new Project({
-    proyecto: req.body.proyecto,
 	  nombre: req.body.nombre,
 	  fechaSolicitud: req.body.fechaSolicitud,
 	  fechaArranque: req.body.fechaArranque,
@@ -105,7 +103,6 @@ let message = '';
 if(req.isAuthenticated()){
   logger.debug(req.params.id);
   Project.findByIdAndUpdate({_id: ObjectId(req.params.id)}, {$set: {
-     proyecto: req.body.proyecto,
      nombre: req.body.nombre,
      fechaSolicitud: req.body.fechaSolicitud,
      fechaArranque: req.body.fechaArranque,
