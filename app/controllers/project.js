@@ -72,9 +72,7 @@ let message = '';
 
 function show(req, res, next){
   logger.debug("SHOW");
-    Project.findOne({_id:req.params.id},(err, project) => {
-        res.render('dashboard', {'user':req.user, 'project':project});
-  });
+  res.redirect('/projects/' + req.params.id + '/userStories/');
 }
 
 function addCollaborators(req, res, next) {

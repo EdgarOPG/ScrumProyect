@@ -4,8 +4,9 @@
 const projectController = require('../controllers/project');
 const express = require('express');
 const router = express.Router();
+const userStories = require('./userStories');
 
-/* POST para agregar un array de habilidades */
+/* POST para agregar un array de collaborators */
 router.post('/collaborators', projectController.addCollaborators);
 
 /* Get dashboard */
@@ -23,13 +24,12 @@ router.get('/:id/edit', projectController.edit);
 /* PUT para editar proyecto*/
 router.put('/:id', projectController.update);
 
-/* Get navbar ????
-router.get('/navbar', projectController.navbar);
-
 /* GET el proyecto segun su id*/
 router.get('/:id', projectController.show);
 
 /* DELETE para eliminar proyecto*/
 router.delete('/:id', projectController.destroy );
+
+router.use('/:id/userStories', userStories);
 
 module.exports = router;

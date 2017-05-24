@@ -1,0 +1,6 @@
+extends ../navbar
+
+block navbar
+  h1 Editar card
+  form(name='add-userStories', id='form-add-userStories', method='POST', action=`/dashboard/userStories/${userStory.id}?_method=PUT`)
+    include form.pug

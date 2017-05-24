@@ -1,0 +1,6 @@
+extends ../navbar
+
+block navbar
+  h1 Nueva User Story
+  form(name='add-cards', id='form-add-cards', method='POST', action='/dashboard/cards/')
+    include form.pug
