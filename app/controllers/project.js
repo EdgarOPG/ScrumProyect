@@ -47,21 +47,7 @@ function create(req, res, next){
 	  equipoDesarrollo: collaborators
   });
 
-let code = '';
-let message = '';
-
  project.save((err, object) => {
-          if(err){
-            code = 'danger';
-            message = 'No se ha podido guardar el proyecto.';
-          }else{
-            code = 'success';
-            message = 'Proyecto creado Correctamente.';
-          }
-          res.locals.status = {
-            code:code,
-            message:message
-          };
            if(req.isAuthenticated()){
               res.redirect('/projects/');
           }
@@ -70,6 +56,8 @@ let message = '';
 
 function show(req, res, next){
   logger.debug("SHOW");
+  req.session.currentProject = req.params.id;
+  console.log(req.session.currentProject);
   res.redirect('/projects/' + req.params.id + '/userStories/');
 }
 

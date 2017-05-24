@@ -14,7 +14,13 @@ function index(req, res, next) {
   }
 }
 
-function newCard(req, res, next) {
+function redirect(req, res, next) {
+  if(req.isAuthenticated()) {
+  		res.redirect('/projects/' + req.session.currentProject + 'userStories/');
+  }
+}
+
+function newUserStory(req, res, next) {
   logger.debug("NEW USERSTORY");
 
   if(req.isAuthenticated()){
@@ -37,7 +43,7 @@ function newCard(req, res, next) {
 function create(req, res, next){
   logger.debug("CREATE");
 
-  let card = new Card({
+  let userStory = new UserStory({
     history: req.body.history,
     how: req.body.how,
     whant: req.body.whant,
@@ -46,19 +52,15 @@ function create(req, res, next){
     given: req.body.given,
     when: req.body.when,
     then: req.body.then,
-    fibonacci: req.body.fibonacci
-
+    fibonacci: req.body.fibonacci,
+    backlog: req.params.backlog,
+    project: ObjectId(req.session.currentProject)
   });
-  card.save((err, object)=>{
-    if(err){
-    //code = 'danger';
-    message = 'No se ha podido guardar el usuario.';
-    }else{
-    /*code = 'success';
-    message = 'Usuario creado Correctamente.';*/
-    next();
-    }
-  });
+  userStory.save((err, object) => {
+            if(req.isAuthenticated()){
+               next();
+           }
+         });
 }
 
 function edit(req, res, next){
@@ -118,9 +120,10 @@ function destroy(req, res, next){
 
 module.exports = {
   index,
-  newCard,
+  newUserStory,
   create,
   edit,
   update,
-  destroy
+  destroy,
+  redirect
 };

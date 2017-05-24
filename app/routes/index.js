@@ -11,9 +11,6 @@ require('../../config/passport')(passport);
     // GET form de signin
     router.get('/', indexController.singin);
 
-    // GET view dashboard
-    router.get('/dashboard', indexController.dashboard);
-
     // Get logout
     router.get('/logout', indexController.logout);
 

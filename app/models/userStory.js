@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const User = mongoose.model('Project');
 
 const UserStorySchema = Schema({
   history: String,
@@ -12,7 +13,12 @@ const UserStorySchema = Schema({
   given: String,
   when: String,
   then: String,
-  fibonacci: String
+  fibonacci: String,
+  backlog: String,
+  project: {
+              type: Schema.Types.ObjectId,
+              ref: 'Project'
+           }
 });
 
 module.exports = mongoose.model('UserStory', UserStorySchema);

@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
 
 function singin(req, res, next) {
-  res.render('singin');
+  res.render('signin');
 }
 
 function logout(req, res) {
@@ -14,14 +14,7 @@ function logout(req, res) {
     res.redirect('/');
 }
 
-function dashboard(req, res) {
-  if(res.isAuthenticated()){
-    res.render('dashboard', {user : req.user});    
-  }
-}
-
 module.exports = {
   singin,
   logout,
-  dashboard
 };
