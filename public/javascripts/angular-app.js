@@ -1,5 +1,6 @@
 const app = angular.module('scrumApp', []);
 
+//configuracion para obtener el path del url como string
 app.config(function($locationProvider) {
   $locationProvider.html5Mode({
                                 enabled: true,
@@ -15,17 +16,20 @@ app.controller('CtrlSkills', function($scope, $http) {
                     {value: 'Master'},
                     {value: 'Senior'}];
 
+//Funcion que añade un skill a un usuario
   $scope.addSkill = function() {
     $scope.skills.push({description: $scope.skillDescription, ranking: $scope.rankingSelected.value});
     $scope.skillDescription = '';
     $scope.postSkills();
   }
 
+//Funcion que remueve un skill a un usuario
   $scope.removeSkill = function(index){
     $scope.skills.splice(index, 1);
     $scope.postSkills();
   }
 
+//funcion para dar actualizacion a la base de datos del usuario
   $scope.postSkills = function() {
     $http.post('/users/skills', {skills: $scope.skills})
       .success(
@@ -49,6 +53,7 @@ app.controller('CtrlSkills', function($scope, $http) {
 
 });
 
+//Controlador para agregar o quitar colaboradores al proyecto
 app.controller('CtrlCollaborators', function($scope, $http, $location){
   let path = $location.path();
   let id = path.split('/')[2]
@@ -58,7 +63,7 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
   $scope.collaboratorss = [];
 
 
-
+//obtiene los ids de los colaboradores ya apuntados al proyecto
   function getIds(){
     let collaborators = [];
     for(let i in $scope.collaboratorss){
@@ -81,6 +86,7 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
 
   };
 
+//quita un usuario del array user y lo añade a colaboradores
   $scope.addCollaborator = function(user, index) {
 
     $scope.collaboratorss.push(user);
@@ -88,12 +94,14 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
     $scope.postCollaborators();
   }
 
+//quita un usuario del array colaboradores y lo añade a users
   $scope.removeCollaborator = function(collaborator, index){
     $scope.collaboratorss.splice(index, 1);
     $scope.users.push(collaborator);
     $scope.postCollaborators();
   }
 
+//post para agregar colaboradores a la base de datos
   $scope.postCollaborators = function() {
     let collaborators = [];
     collaborators = getIds();
@@ -126,6 +134,7 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
 
 });
 
+//Controlador para obtener los colaboradores para el view del proyecto
 app.controller('CtrlProjects', function($scope, $http, $location){
 
   let path = $location.path();

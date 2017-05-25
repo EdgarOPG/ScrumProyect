@@ -10,6 +10,7 @@ const logger = log4js.getLogger();
 const ObjectId = require('mongoose').Types.ObjectId;
 var skills = [];
 
+//Funcion que llama a todos los User y los regresa en formato JSON
 function getAllUsers(req, res, next){
   logger.debug('GET ALL USERS');
   if(req.isAuthenticated()){
@@ -22,6 +23,7 @@ function getAllUsers(req, res, next){
   }
 }
 
+//Funcion que obtiene el usuario autenticado y lo regresa  en formato JSON
 function getMe(req, res, next){
   logger.debug('GET ME');
   if(req.isAuthenticated()){
@@ -32,6 +34,7 @@ function getMe(req, res, next){
   }
 }
 
+//Funcion que obtiene un usuario por su id y lo regresa en formato JSON
 function getUserById(req, res, next){
   logger.debug('GET ONE USER');
   if(req.isAuthenticated()){
@@ -44,6 +47,7 @@ function getUserById(req, res, next){
   }
 }
 
+//Funcion que obtiene un proyecto por su id y lo regresa en formato JSON
 function getProjectById(req, res, next){
   logger.debug('GET ONE PROYECT');
   if(req.isAuthenticated()){
