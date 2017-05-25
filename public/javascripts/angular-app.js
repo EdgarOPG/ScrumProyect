@@ -67,6 +67,8 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
     return collaborators;
   };
 
+//Esta funcion compara los dos arrays en busca de usuarios ya colaborando en este proyecto
+//y de ser asi los remueve para evitar duplicidad
   function  removeColFromUsers(){
 
     for (var i = $scope.collaboratorss.length - 1; i >= 0; i--) {
