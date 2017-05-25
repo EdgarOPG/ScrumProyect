@@ -53,6 +53,6 @@ block navbar
                 p #{skill.description} - #{skill.ranking}
           .bs-callout.bs-callout-danger
           form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
-          a( type='button', href='./edit/', class='btn btn-primary') Editar
-          input(type='submit', class="btn btn-danger", value='Eliminar')
+            a( type='button', href='./edit/', class='btn btn-primary') Editar
+            input(type='submit', class="btn btn-danger", value='Eliminar')
           // resume

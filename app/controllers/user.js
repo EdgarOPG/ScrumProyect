@@ -3,9 +3,12 @@
 'use strict'
 const express = require('express');
 const User = require('../models/user');
+const ObjectId = require('mongoose').Types.ObjectId;
+
 const log4js = require('log4js');
 const bcrypt = require('bcrypt-nodejs');
 const logger = log4js.getLogger();
+
 var skills = [];
 
 function index(req, res, next){
@@ -69,19 +72,8 @@ function destroy(req, res, next){
   logger.debug("DESTROY");
   let code = '';
   let message = '';
-  User.remove({ _id: req.session.id }, (err) => {
-    if (!err) {
-      res.locals.status = {
-        code:'error',
-        message:'El usuario no fue eliminado.'
-      };
-    }
-    else {
-      res.locals.status = {
-        code:'success',
-        message:'Usuario eliminado Correctamente.'
-      };
-    }
+  User.remove({ _id: ObjectId(req.user._id) }, (err) => {
+    res.redirect('/');
 });
 }
 
