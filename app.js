@@ -27,7 +27,7 @@ const projects = require('./app/routes/projects');
 const api = require('./app/routes/api');
 
 // configuration ===============================================================
-mongoose.connect(configFB.uri || configDB.url); // connect to our database
+mongoose.connect(configDB.uri || configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
