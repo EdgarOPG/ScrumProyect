@@ -23,5 +23,8 @@
     "passport-local": "~1.0.0",
     "passport-twitter": "~1.0.4",
     "pug": "^2.0.0-rc.1"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
