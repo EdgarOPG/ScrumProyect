@@ -108,8 +108,9 @@ function update(req, res, next){
                                                              rfc: req.body.rfc,
                                                              domicilio: req.body.domicilio,
                                                              skills: skills,
-                                                             email: req.body.email,
-                                                             password: password
+                                                             local: {
+                                                               email: req.body.email,
+                                                               password: password},
                                                              }}, {upsert: true, overwrite: true}, (err, user) => {
           next();
           if(err){
