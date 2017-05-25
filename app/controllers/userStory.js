@@ -100,7 +100,7 @@ function destroy(req, res, next){
   console.log("DESTROY USERSTORY");
   let code = '';
   let message = '';
-  UserStory.remove({ _id: ObjectId(req.params.id)}, (err) =>
+  UserStory.findOneAndRemove({ _id: ObjectId(req.params.id)}, (err) =>
   {
     next();
   });
