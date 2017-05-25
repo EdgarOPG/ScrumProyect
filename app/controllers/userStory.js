@@ -10,7 +10,13 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 function index(req, res, next) {
   if(req.isAuthenticated()) {
-  		res.render('projects/dashboard', {'user': req.user})
+
+    let url = req.originalUrl;
+    let id = url.split('/')[2];
+    Project.findById({_id: ObjectId(id)},(err, project)=>{
+        res.render('projects/dashboard', {'user': req.user, 'project':project})
+    });
+  		
   }
 }
 

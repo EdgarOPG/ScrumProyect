@@ -117,7 +117,9 @@ app.controller('CtrlProjects', function($scope, $http, $location){
     .then(function(project){
       $scope.project = project.data;
       $scope.collaborators = $scope.project.equipoDesarrollo;
-     console.log($scope.project);
+     console.log($scope.project.equipoDesarrollo);
   });
 });
+
+
 
