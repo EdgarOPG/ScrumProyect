@@ -61,6 +61,7 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
   $scope.project = {};
   $scope.users = [];
   $scope.collaboratorss = [];
+  $scope.me = {};
 
 
 //obtiene los ids de los colaboradores ya apuntados al proyecto
@@ -81,8 +82,12 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
           if ($scope.collaboratorss[i]._id==$scope.users[j]._id) {
             $scope.users.splice(j, 1);
           }
+          else if ($scope.me._id==$scope.users[j]._id) {
+             $scope.users.splice(j, 1);
+          }
         }  
     } 
+
 
   };
 
@@ -122,6 +127,12 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
       console.log($scope.users);
   });
 
+    $http.get("/api/users/me")
+    .then(function(user){
+      $scope.me = user.data;
+      console.log($scope.me);
+  });
+
 
 
   $http.get("/api/projects/" + id)
@@ -131,6 +142,8 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
      console.log($scope.project);
       removeColFromUsers();
   });
+
+  
 
 });
 
