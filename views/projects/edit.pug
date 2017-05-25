@@ -24,7 +24,7 @@ block navbar
           .form-group
             div.skills-table(ng-controller='CtrlCollaborators')
               .form-group
-                select(ng-model='userSelected', ng-options='user as user.usuario for user in users track by user._id')
+                select(ng-model='userSelected', ng-options='user as user.usuario for user in users track by user._id | filter: collaborators._id')
                 input.btn.btn-primary(type='button', ng-click='addCollaborator(userSelected)', value='Agregar')
               .form-group
                 .row
