@@ -2,7 +2,8 @@
   "name": "scrumproyect",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
 },
   "dependencies": {
     "bcrypt-nodejs": "latest",
@@ -23,8 +24,5 @@
     "passport-local": "~1.0.0",
     "passport-twitter": "~1.0.4",
     "pug": "^2.0.0-rc.1"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
