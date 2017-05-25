@@ -24,14 +24,20 @@ block navbar
           .form-group
             div.skills-table(ng-controller='CtrlCollaborators')
               .form-group
-                select(ng-model='userSelected', ng-options='user as user.usuario for user in users track by user._id')
-                input.btn.btn-primary(type='button', ng-click='addCollaborator(userSelected)', value='Agregar')
+                row
+                  table(class="table", style='height:120px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;')
+                    tbody
+                      tr(ng-repeat='user in users')
+                        td 
+                          div(style='font-size:22px') {{user.nombre}} {{user.primerApellido}} {{user.segundoApellido}}
+                        td
+                          input.btn.btn-primary(type='button', ng-click='addCollaborator(user, $index)', value='Agregar')
               .form-group
                 .row
-                  table(class="table")
+                  table(class="table" )
                     tbody
                       tr(ng-repeat='collaborator in collaboratorss')
                         td {{collaborator.nombre}} {{collaborator.primerApellido}}
                         td
-                          input.btn.btn-danger(data-ng-click='removeCollaborator($index)', value='Eliminar')
+                          input.btn.btn-danger(data-ng-click='removeCollaborator(collaborator, $index)', value='Eliminar')
           input.btn.btn-lg.btn-success.btn-block(type='submit', value='Actualizar')

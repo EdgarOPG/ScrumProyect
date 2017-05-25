@@ -57,6 +57,8 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
   $scope.users = [];
   $scope.collaboratorss = [];
 
+
+
   function getIds(){
     let collaborators = [];
     for(let i in $scope.collaboratorss){
@@ -65,13 +67,28 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
     return collaborators;
   };
 
-  $scope.addCollaborator = function(user) {
+  function  removeColFromUsers(){
+
+    for (var i = $scope.collaboratorss.length - 1; i >= 0; i--) {
+      for (var j = $scope.users.length - 1; j >= 0; j--) {
+          if ($scope.collaboratorss[i]._id==$scope.users[j]._id) {
+            $scope.users.splice(j, 1);
+          }
+        }  
+    } 
+
+  };
+
+  $scope.addCollaborator = function(user, index) {
+
     $scope.collaboratorss.push(user);
+    $scope.users.splice(index, 1);
     $scope.postCollaborators();
   }
 
-  $scope.removeCollaborator = function(index){
+  $scope.removeCollaborator = function(collaborator, index){
     $scope.collaboratorss.splice(index, 1);
+    $scope.users.push(collaborator);
     $scope.postCollaborators();
   }
 
@@ -95,11 +112,14 @@ app.controller('CtrlCollaborators', function($scope, $http, $location){
       console.log($scope.users);
   });
 
+
+
   $http.get("/api/projects/" + id)
     .then(function(project){
-      $scope.projects = project.data;
-      $scope.collaborators = $scope.project.equipoDesarrollo;
+      $scope.project = project.data;
+      $scope.collaboratorss = $scope.project.equipoDesarrollo;
      console.log($scope.project);
+      removeColFromUsers();
   });
 
 });
