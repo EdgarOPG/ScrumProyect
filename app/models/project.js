@@ -14,10 +14,12 @@ const ProjectSchema = Schema({
                   type: Schema.Types.ObjectId,
                   ref: 'User'
                 },
-  equipoDesarrollo: [{
-                      type: Schema.Types.ObjectId,
-                      ref: 'User'
-                    }]
+  equipoDesarrollo: [
+                      {
+                        type: Schema.Types.ObjectId,
+                        ref: 'User'
+                      }
+                    ]
 });
 
 module.exports = mongoose.model('Project', ProjectSchema);
