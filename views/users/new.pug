@@ -9,5 +9,12 @@ block content
           img( class='logo-login',src='/images/logo.png')
           h3.panel-title Por favor ingresa todos tus datos
         .panel-body
-          form(role='form', name='add-user', id='form-add-user', method='POST', action='/users/')
-            include form.pug
+          form(role='form', name='add-user', id='form-add-user', method='post', action='/users')
+            fieldset
+              .form-group
+                input.form-control(placeholder='E-mail', name='email', type='email', value='')
+              .form-group
+                input.form-control(placeholder='Password', name='password', type='password', value='')
+              .form-group
+                input.form-control(placeholder='Confirmar password', name='confirmarPassword', type='password', value='')
+              input.btn.btn-lg.btn-success.btn-block(type='submit', value='Aceptar')

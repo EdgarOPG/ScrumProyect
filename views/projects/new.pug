@@ -1,0 +1,24 @@
+extends ../navbar
+
+block navbar
+  h1.page-header New project
+  // /.col-lg-12
+  // /.row
+  .row
+  .col-lg-12
+  .panel.panel-default
+    .panel-heading
+      | Datos de usuario
+    // /.panel-heading
+    .panel-body
+      form(role='form', name='add-project', id='form-add-project', method='POST', action='/projects/')
+        fieldset
+          .form-group
+            input.form-control(placeholder='Nombre', name='nombre', type='text')
+          .form-group
+            input.form-control(placeholder='Fecha de Solicitud', name='fechaSolicitud', type='date')
+          .form-group
+            input.form-control(placeholder='Fecha de Arranque', name='fechaArranque', type='date')
+          .form-group
+            input.form-control(placeholder='Descripcion', name='descripcion', type='text')
+          input.btn.btn-lg.btn-success.btn-block(type='submit', value='Crear Proyecto')

@@ -12,12 +12,41 @@ block navbar
     // /.panel-heading
     .panel-body
       form(role='form', name='edit-user', id='form-edit-user', method='POST', action=`/users/${user.id}?_method=PUT`)
-        include form.pug
-          div.form-group(ng-controller='CtrlSkills')
-            form()
-              input(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
-              select(ng-model='rankingSelected', ng-options='ranking as ranking.value for ranking in rankings')
-              input(type='button', ng-click='addSkill()', value='Agregar')
-              ul()
-                li(ng-repeat='skill in skills') {{skill.description}} - {{skill.ranking}}
-                  input(data-ng-click='removeSkill($index)', value='Eliminar')
+        fieldset
+          .form-group
+            input.form-control(placeholder='E-mail', name='email', type='email', value=`${user.local.email}`)
+          .form-group
+            input.form-control(placeholder='Password', name='password', type='password', value='')
+          .form-group
+            input.form-control(placeholder='Confirmar password', name='confirmarPassword', type='password', value='')
+          .form-group
+            input.form-control(placeholder='Usuario', name='usuario', type='text', autofocus='', value=`${user.usuario}`)
+          .form-group
+            input.form-control(placeholder='Nombre', name='nombre', type='text', value=`${user.nombre}`)
+          .form-group
+            input.form-control(placeholder='Primer apellido', name='primerApellido', type='text', value=`${user.primerApellido}`)
+          .form-group
+            input.form-control(placeholder='Segundo apellido', name='segundoApellido', type='text', value=`${user.segundoApellido}`)
+          .form-group
+            input.form-control(placeholder='Fecha de nacimiento', name='fechaNacimiento', type='date', value=`${user.fechaNacimiento}`)
+          .form-group
+            input.form-control(placeholder='CURP', name='curp', type='text', value=`${user.curp}`)
+          .form-group
+            input.form-control(placeholder='RFC', name='rfc', type='text', value=`${user.rfc}`)
+          .form-group
+            input.form-control(placeholder='Domicilio', name='domicilio', type='text', value=`${user.domicilio}`)
+          .form-group
+              div.skills-table(ng-controller='CtrlSkills')
+                .form-group
+                  input.my-form(type='text', placeholder='Ingresa una habilidad', ng-model='skillDescription')
+                  select(ng-model='rankingSelected', ng-options='ranking as ranking.value for ranking in rankings')
+                  input.btn.btn-primary(type='button', ng-click='addSkill()', value='Agregar')
+                .form-group
+                  .row
+                    table(class="table")
+                      tbody
+                        tr(ng-repeat='skill in skills')
+                          td {{skill.description}} - {{skill.ranking}}
+                          td
+                            input.btn.btn-danger(data-ng-click='removeSkill($index)', value='Eliminar')
+          input.btn.btn-lg.btn-success.btn-block(type='submit', value='Aceptar')

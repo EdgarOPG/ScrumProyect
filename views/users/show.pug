@@ -19,31 +19,22 @@ block navbar
                 img.img-responsive(alt='', src='http://placehold.it/300x300')
               .row
                 .col-xs-12.social-btns
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-google(href='#')
+                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder.my-button
+                    a.btn.btn-google(href='/connect/google')
                       i.fa.fa-google
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-facebook(href='#')
+                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder.my-button
+                    a.btn.btn-facebook(href='/connect/facebook')
                       i.fa.fa-facebook
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-twitter(href='#')
+                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder.my-button
+                    a.btn.btn-twitter(href='/connect/twitter')
                       i.fa.fa-twitter
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-linkedin(href='#')
-                      i.fa.fa-linkedin
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-github(href='#')
-                      i.fa.fa-github
-                  .col-xs-3.col-md-1.col-lg-1.social-btn-holder
-                    a.btn.btn-social.btn-block.btn-stackoverflow(href='#')
-                      i.fa.fa-stack-overflow
             .col-xs-12.col-sm-8
               ul.list-group
                 li.list-group-item
                   i.fa.fa-user
                   |  #{user.nombre} #{user.primerApellido} #{user.segundoApellido}
                 li.list-group-item
-                  i.fa.fa-address-card
+                  i.fa.fa-id-card
                   |  #{user.curp}
                 li.list-group-item #{user.rfc}
                 li.list-group-item
@@ -54,7 +45,7 @@ block navbar
                   //|  000-000-0000
                 li.list-group-item
                   i.fa.fa-envelope
-                  |  #{user.email}
+                  |  #{user.local.email}
         h4 Language and Platform Skills
           ul
             each skill in user.skills
@@ -62,6 +53,6 @@ block navbar
                 p #{skill.description} - #{skill.ranking}
           .bs-callout.bs-callout-danger
           form(name='delete-user', id='form-delete-user', method='POST', action=`/users/${user._id}?_method=DELETE`)
-          a( type='button', href='./edit/', class='btn btn-primary') Editar
-          input(type='submit', class="btn btn-danger", value='Eliminar')
+            a( type='button', href='./edit/', class='btn btn-primary') Editar
+            input(type='submit', class="btn btn-danger", value='Eliminar')
           // resume

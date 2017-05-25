@@ -1,0 +1,15 @@
+extends ../navbar
+
+block navbar
+  h1.page-header Edit user story
+  // /.col-lg-12
+  // /.row
+  .row
+  .col-lg-12
+  .panel.panel-default
+    .panel-heading
+      | User story data
+    // /.panel-heading
+    .panel-body
+      form(name='add-userStory', id='form-update-userStory', method='POST', action=`/userStories/${userStory._id}?_method=PUT`)
+        include form.pug

@@ -1,0 +1,35 @@
+extends ../navbar
+
+block navbar
+  h1.page-header Projects
+  // /.col-lg-12
+  // /.row
+  .row
+  .col-lg-12
+  .panel.panel-default
+    .panel-heading
+      | Datos de usuario
+    // /.panel-heading
+    .panel-body
+      #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+        .row
+        table(class="table")
+          thead
+            th Nombre
+            th Fecha Solicitud
+            th Fecha Arranque
+            th Descripcion
+            th
+              a(class="btn btn-success", href='./new') Nuevo
+          tbody
+            each project in projects
+              tr
+                td #{project.nombre}
+                td #{project.fechaSolicitud}
+                td #{project.fechaArranque}
+                td #{project.descripcion}
+                td
+                  a(class="btn btn-primary", href=`/projects/${project._id}`) Ver
+                  a(class="btn btn-warning", href=`/projects/${project._id}/edit`) Editar
+                  form.form-button(name='delete-project', id='form-delete-project', method='POST', action=`/projects/${project._id}?_method=DELETE`)
+                    input(type='submit', class="btn btn-danger", value='X')

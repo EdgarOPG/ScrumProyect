@@ -1,0 +1,118 @@
+extends ../navbar
+
+block navbar
+  h1.page-header Proyect Name
+  // /.col-lg-12
+  // /.row
+  .row
+  .col-lg-12
+  .panel.panel-default
+    .panel-heading
+      | Proyect description
+    // /.panel-heading
+    .panel-body
+      #dataTables-example_wrapper.dataTables_wrapper.form-inline.dt-bootstrap.no-footer
+        .row
+          .col-sm-12
+            table#dataTables-example.table.table-striped.table-bordered.table-hover.dataTable.no-footer.dtr-inline(role='grid', aria-describedby='dataTables-example_info', style='width: 100%;', width='100%')
+              thead
+                tr(role='row')
+                  th.sorting_asc(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 175px;', aria-sort='ascending', aria-label='Rendering engine: activate to sort column descending') product backlog
+                  th.sorting(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 205px;', aria-label='Browser: activate to sort column ascending') release backlog
+                  th.sorting(tabindex='0', aria-controls='dataTables-example', rowspan='1', colspan='1', style='width: 187px;', aria-label='Platform(s): activate to sort column ascending') sprint backlog
+              tbody(ng-controller='CtrlProjects')
+                tr.gradeA.odd(role='row')
+                  td.col-lg-3.col-md-6
+                    a(href='/userStories/product/new')
+                      .panel-primary
+                        .panel-heading
+                          .row
+                            .col-xs-3
+                              i.fa.fa-plus.fa-5x
+                              .col-xs-9.text-right
+                        .panel-footer
+                          span.pull-left Create user story
+                          span.pull-right
+                          .clearfix
+                  td.col-lg-3.col-md-6
+                    a(href='/userStories/release/new')
+                      .panel-yellow
+                        .panel-heading
+                          .row
+                            .col-xs-3
+                              i.fa.fa-plus.fa-5x
+                            .col-xs-9.text-right
+                        .panel-footer
+                          span.pull-left Create user story
+                          span.pull-right
+                          .clearfix
+                  td.col-lg-3.col-md-6
+                    a(href='/userStories/sprint/new')
+                      .panel-red
+                        .panel-heading
+                          .row
+                            .col-xs-3
+                              i.fa.fa-plus.fa-5x
+                            .col-xs-9.text-right
+                        .panel-footer
+                          span.pull-left Create user story
+                          span.pull-right
+                          .clearfix
+                tr.gradeA.even(role='row')
+                td.col-lg-3.col-md-6
+                  ul.table-list
+                    li(ng-repeat="userStory in userStories | filter : {backlog: 'product'}")
+                      .panel-primary
+                        .panel-heading
+                          .row
+                            .col-xs-3
+                              i.fa.fa-comments.fa-5x
+                            .col-xs-9.text-right
+                              .huge {{userStory.fibonacci}}
+                              div {{userStory.history}}
+                        .panel-footer
+                          a(href='/userStories/{{userStory._id}}/edit') View Details
+                            span.pull-left
+                          span.pull-right
+                            button.fa.btn(ng-click='deleteUserStory(userStory._id)', style='background-color: Transparent;')
+                              span.pull-right
+                                i.fa.fa-times-circle
+                          .clearfix
+                td.col-lg-3.col-md-6
+                  ul.table-list
+                    li(ng-repeat="userStory in userStories | filter : {backlog: 'release'}")
+                      .panel-yellow
+                        .panel-heading
+                          .row
+                            .col-xs-3
+                              i.fa.fa-comments.fa-5x
+                            .col-xs-9.text-right
+                              .huge {{userStory.fibonacci}}
+                              div {{userStory.history}}
+                        .panel-footer
+                          a(href='/userStories/{{userStory._id}}/edit') View Details
+                            span.pull-left
+                          span.pull-right
+                            button.fa.btn(ng-click='deleteUserStory(userStory._id)', style='background-color: Transparent;')
+                              span.pull-right
+                                i.fa.fa-times-circle
+                          .clearfix
+                td.col-lg-3.col-md-6
+                  ul.table-list
+                    li(ng-repeat="userStory in userStories | filter : {backlog: 'sprint'}")
+                      .panel-red
+                        .panel-heading
+                          .row
+                            .col-xs-3
+                              i.fa.fa-comments.fa-5x
+                            .col-xs-9.text-right
+                              .huge {{userStory.fibonacci}}
+                              div {{userStory.history}}
+                        .panel-footer
+                          a(href='/userStories/{{userStory._id}}/edit') View Details
+                            span.pull-left
+                          span.pull-right
+                            button.fa.btn(ng-click='deleteUserStory(userStory._id)', style='background-color: Transparent;')
+                              span.pull-right
+                                i.fa.fa-times-circle
+                          .clearfix
