@@ -101,8 +101,9 @@ function destroy(req, res, next){
   let code = '';
   let message = '';
   UserStory.remove({ _id: ObjectId(req.params.id)}, (err) =>
-  { });
-  next();
+  {
+    next();
+  });
 }
 
 module.exports = {

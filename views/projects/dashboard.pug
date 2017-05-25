@@ -70,12 +70,14 @@ block navbar
                             .col-xs-9.text-right
                               .huge {{userStory.fibonacci}}
                               div {{userStory.history}}
-                        a(href='./{{userStory._id}}/edit')
-                          .panel-footer
-                            span.pull-left View Details
-                            span.pull-right
-                              i.fa.fa-times-circle
-                            .clearfix
+                        .panel-footer
+                          a(href='./{{userStory._id}}/edit') View Details
+                            span.pull-left
+                          span.pull-right
+                            button.fa.btn(ng-click='deleteUserStory(userStory)', style='background-color: Transparent;')
+                              span.pull-right
+                                i.fa.fa-times-circle
+                          .clearfix
                 td.col-lg-3.col-md-6
                   ul.table-list
                     li(ng-repeat="userStory in userStories | filter : {backlog: 'release'}")
@@ -87,12 +89,14 @@ block navbar
                             .col-xs-9.text-right
                               .huge {{userStory.fibonacci}}
                               div {{userStory.history}}
-                        a(href='./{{userStory._id}}/edit')
-                          .panel-footer
-                            span.pull-left View Details
-                            span.pull-right
-                              i.fa.fa-times-circle
-                            .clearfix
+                        .panel-footer
+                          a(href='./{{userStory._id}}/edit') View Details
+                            span.pull-left
+                          span.pull-right
+                            button.fa.btn(ng-click='deleteUserStory(userStory)', style='background-color: Transparent;')
+                              span.pull-right
+                                i.fa.fa-times-circle
+                          .clearfix
                 td.col-lg-3.col-md-6
                   ul.table-list
                     li(ng-repeat="userStory in userStories | filter : {backlog: 'sprint'}")
@@ -104,9 +108,11 @@ block navbar
                             .col-xs-9.text-right
                               .huge {{userStory.fibonacci}}
                               div {{userStory.history}}
-                        a(href='./{{userStory._id}}/edit')
-                          .panel-footer
-                            span.pull-left View Details
-                            span.pull-right
-                              i.fa.fa-times-circle
-                            .clearfix
+                        .panel-footer
+                          a(href='./{{userStory._id}}/edit') View Details
+                            span.pull-left
+                          span.pull-right
+                            button.fa.btn(ng-click='deleteUserStory(userStory)', style='background-color: Transparent;')
+                              span.pull-right
+                                i.fa.fa-times-circle
+                          .clearfix
