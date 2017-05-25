@@ -41,7 +41,7 @@ function newUserStory(req, res, next) {
 };
 
 function create(req, res, next){
-  logger.debug("CREATE");
+  logger.debug("CREATE USERSTORY");
 
   let userStory = new UserStory({
     history: req.body.history,
@@ -64,7 +64,7 @@ function create(req, res, next){
 }
 
 function edit(req, res, next){
-  console.log("EDIT");
+  console.log("EDIT USERSTORY");
   console.log(req.params.id);
   UserStory.findOne({_id: ObjectId(req.params.id)},(err, userStory)=>{
     if(req.isAuthenticated()){
@@ -76,7 +76,7 @@ function edit(req, res, next){
 }
 
 function update(req, res, next){
-  logger.debug("UPDATE");
+  logger.debug("UPDATE USERSTORY");
   UserStory.update({_id: ObjectId(req.params.id)},{$set: {
                                                           history: req.body.history,
                                                           how: req.body.how,
@@ -97,7 +97,7 @@ function update(req, res, next){
 
 
 function destroy(req, res, next){
-  console.log("DESTROY");
+  console.log("DESTROY USERSTORY");
   let code = '';
   let message = '';
   UserStory.remove({ _id: ObjectId(req.params.id)}, (err) =>

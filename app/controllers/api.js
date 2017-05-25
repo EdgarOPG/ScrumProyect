@@ -52,7 +52,7 @@ function getCurrentProject(req, res, next){
   logger.debug('GET ONE PROYECT');
   if(req.isAuthenticated()){
     //TODO refact
-    Project.findById({_id:ObjectId(req.sessin.currentProject)})
+    Project.findById({_id: ObjectId(req.session.currentProject)})
       .populate('productOwner equipoDesarrollo')
       .exec(function(err, project){
         res.json(project);
@@ -67,7 +67,7 @@ function getCurrentUsersStories(req, res, next){
   logger.debug('GET ONE PROYECT');
   if(req.isAuthenticated()){
     //TODO refact
-    UserStory.find({'project':ObjectId(req.session.currentProject)})
+    UserStory.find({'project': ObjectId(req.session.currentProject)})
       .exec(function(err, userStories){
         res.json(userStories);
       });

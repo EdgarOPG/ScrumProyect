@@ -1,4 +1,4 @@
-//Routes
+  //Routes
 'use strict'
 
 const userStoryController = require('../controllers/userStory');
@@ -13,7 +13,7 @@ router.post('/:backlog', userStoryController.create);
 
 router.get('/:id/edit', userStoryController.edit);
 
-router.put('/:id', userStoryController.update );
+router.put('/:id', userStoryController.update);
 
 router.delete('/:id', userStoryController.destroy);
 
