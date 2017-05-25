@@ -18,6 +18,7 @@ const methodOverride = require('method-override');
 const log4js = require('log4js');
 
 
+const configDB = require('./config/database.js');
 
 const index = require('./app/routes/index');
 const users = require('./app/routes/users');
@@ -26,7 +27,7 @@ const projects = require('./app/routes/projects');
 const api = require('./app/routes/api');
 
 // configuration ===============================================================
-mongoose.connect(process.env.MONGOLAB_URI); // connect to our database
+mongoose.connect(process.env.MONGOLAB_URI || configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
