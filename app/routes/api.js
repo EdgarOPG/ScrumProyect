@@ -15,8 +15,8 @@ router.get('/users/me',apiController.getMe);
 router.get('/users/:id',apiController.getUserById);
 
 /* GET para obtener un usuario segun su id */
-router.get('/projects/:id',apiController.getProjectById);
+router.get('/projects/current',apiController.getCurrentProject);
 
-router.get('/userStories/:id',apiController.getUsersStoriesById);
+router.get('/userStories/current',apiController.getCurrentUsersStories);
 
 module.exports = router;

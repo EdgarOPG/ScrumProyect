@@ -16,7 +16,7 @@ function index(req, res, next) {
 
 function redirect(req, res, next) {
   if(req.isAuthenticated()) {
-  		res.redirect('/projects/' + req.session.currentProject + 'userStories/');
+  		res.redirect('/projects/' + req.session.currentProject);
   }
 }
 
@@ -65,11 +65,10 @@ function create(req, res, next){
 
 function edit(req, res, next){
   console.log("EDIT");
-  Card.findOne({_id:req.params.id},(err, cards)=>{
-    var user = "";
-    if(req.session.user){
-    user = req.session.user;
-    res.render('cards/edit', {'cards':cards, 'user':user});
+  console.log(req.params.id);
+  UserStory.findOne({_id: ObjectId(req.params.id)},(err, userStory)=>{
+    if(req.isAuthenticated()){
+      res.render('userStories/edit', {'userStory':userStory, 'user': req.user});
     }
 
 
@@ -78,19 +77,19 @@ function edit(req, res, next){
 
 function update(req, res, next){
   logger.debug("UPDATE");
-  let cards = {
-    history: req.body.history,
-    how: req.body.how,
-    whant: req.body.whant,
-    some: req.body.some,
-    accept: req.body.accept,
-    given: req.body.given,
-    when: req.body.when,
-    then: req.body.then,
-    fibonacci: req.body.fibonacci
-
-  };
-  Card.update({_id:req.params.id},{$set: cards}, (err,card) =>{
+  UserStory.update({_id: ObjectId(req.params.id)},{$set: {
+                                                          history: req.body.history,
+                                                          how: req.body.how,
+                                                          whant: req.body.whant,
+                                                          some: req.body.some,
+                                                          accept: req.body.accept,
+                                                          given: req.body.given,
+                                                          when: req.body.when,
+                                                          then: req.body.then,
+                                                          fibonacci: req.body.fibonacci
+                                                         }
+                                                  },
+  (err,card) =>{
     next();
   });
 
@@ -101,20 +100,8 @@ function destroy(req, res, next){
   console.log("DESTROY");
   let code = '';
   let message = '';
-  Card.remove({ _id: req.params.id }, (err) => {
-    if (!err) {
-      res.locals.status = {
-        code:'error',
-        message:'Card fue eliminado Correctamente.'
-      };
-    }
-    else {
-      res.locals.status = {
-        code:'success',
-        message:'Card no fue eliminado.'
-      };
-    }
-});
+  UserStory.remove({ _id: ObjectId(req.params.id)}, (err) =>
+  { });
   next();
 }
 

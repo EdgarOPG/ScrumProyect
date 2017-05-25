@@ -117,18 +117,7 @@ if(req.isAuthenticated()){
 function destroy(req, res, next){
   logger.debug("DESTROY");
   Project.remove({ _id: ObjectId(req.params.id)}, (err) => {
-    if (err) {
-        res.locals.status = {
-          code:'error',
-          message:'El Proyecto no fue eliminado.'
-        };
-      }
-      else {
-        res.locals.status = {
-          code:'success',
-          message:'Proyecto eliminado correctamente.'
-        };
-      }
+      
   });
   res.redirect('/projects/');
 }

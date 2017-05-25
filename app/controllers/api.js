@@ -48,11 +48,11 @@ function getUserById(req, res, next){
   }
 }
 
-function getProjectById(req, res, next){
+function getCurrentProject(req, res, next){
   logger.debug('GET ONE PROYECT');
   if(req.isAuthenticated()){
     //TODO refact
-    Project.findById({_id:ObjectId(req.params.id)})
+    Project.findById({_id:ObjectId(req.sessin.currentProject)})
       .populate('productOwner equipoDesarrollo')
       .exec(function(err, project){
         res.json(project);
@@ -63,11 +63,11 @@ function getProjectById(req, res, next){
 }
 
 
-function getUsersStoriesById(req, res, next){
+function getCurrentUsersStories(req, res, next){
   logger.debug('GET ONE PROYECT');
   if(req.isAuthenticated()){
     //TODO refact
-    UserStory.find({'project':ObjectId(req.params.id)})
+    UserStory.find({'project':ObjectId(req.session.currentProject)})
       .exec(function(err, userStories){
         res.json(userStories);
       });
@@ -80,6 +80,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   getMe,
-  getProjectById,
-  getUsersStoriesById
+  getCurrentProject,
+  getCurrentUsersStories
 };
