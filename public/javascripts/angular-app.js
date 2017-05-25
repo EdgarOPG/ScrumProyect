@@ -21,14 +21,8 @@ app.controller('CtrlSkills', function($scope, $http) {
 
   $scope.postSkills = function() {
     $http.post('/users/skills', {skills: $scope.skills})
-      .success(
-          function(success){
-              console.log(success)
-          })
-      .error(
-          function(error){
-              console.log(error)
-          });
+      .then(function(){
+      });
   }
 
   // Esta funcion obtiene los datos del usuario en forma de JSON del endpoint
@@ -69,14 +63,8 @@ app.controller('CtrlCollaborators', function($scope, $http){
     let collaborators = [];
     collaborators = getIds();
     $http.post('/projects/collaborators', {collaborators: collaborators})
-      .success(
-          function(success){
-              console.log(success)
-          })
-      .error(
-          function(error){
-              console.log(error)
-          });
+      .then(function(){
+    });
   }
 
   $http.get('/api/users')
