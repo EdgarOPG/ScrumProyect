@@ -74,7 +74,7 @@ function addCollaborators(req, res, next) {
 
 function edit(req, res, next){
   logger.debug("EDIT");
-
+  req.session.currentProject = req.params.id;
   if(req.isAuthenticated()){
       Project.findOne({_id: ObjectId(req.params.id)},(err, project)=>{
         res.render('projects/edit', {'project':project, 'user':req.user})
@@ -117,7 +117,7 @@ if(req.isAuthenticated()){
 function destroy(req, res, next){
   logger.debug("DESTROY");
   Project.remove({ _id: ObjectId(req.params.id)}, (err) => {
-      
+
   });
   res.redirect('/projects/');
 }
