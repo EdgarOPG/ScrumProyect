@@ -18,7 +18,6 @@ const methodOverride = require('method-override');
 const log4js = require('log4js');
 
 
-const configDB = require('./config/database.js');
 
 const index = require('./app/routes/index');
 const users = require('./app/routes/users');
