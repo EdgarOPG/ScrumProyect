@@ -104,8 +104,8 @@ app.controller('CtrlProjects', function($scope, $http){
      console.log($scope.userStories);
   });
 
-  $scope.deleteUserStory = function(userStory) {
-    let url = '/projects/' + userStory.project + '/userStories/' + userStory._id;
+  $scope.deleteUserStory = function(Id) {
+    let url = '/userStories/' + Id;
     $http.delete(url)
       .then(function(){
     });

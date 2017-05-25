@@ -23,6 +23,7 @@ const configDB = require('./config/database.js');
 const index = require('./app/routes/index');
 const users = require('./app/routes/users');
 const projects = require('./app/routes/projects');
+const userStories = require('./app/routes/userStories');
 
 const api = require('./app/routes/api');
 
@@ -58,6 +59,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', index);
 app.use('/users', users);
 app.use('/projects', projects);
+app.use('/userStories', userStories);
+
 
 app.use('/api', api);
 

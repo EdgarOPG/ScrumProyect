@@ -23,7 +23,7 @@ block navbar
               tbody(ng-controller='CtrlProjects')
                 tr.gradeA.odd(role='row')
                   td.col-lg-3.col-md-6
-                    a(href='./product/new')
+                    a(href='/userStories/product/new')
                       .panel-primary
                         .panel-heading
                           .row
@@ -35,7 +35,7 @@ block navbar
                           span.pull-right
                           .clearfix
                   td.col-lg-3.col-md-6
-                    a(href='./release/new')
+                    a(href='/userStories/release/new')
                       .panel-yellow
                         .panel-heading
                           .row
@@ -47,7 +47,7 @@ block navbar
                           span.pull-right
                           .clearfix
                   td.col-lg-3.col-md-6
-                    a(href='./sprint/new')
+                    a(href='/userStories/sprint/new')
                       .panel-red
                         .panel-heading
                           .row
@@ -71,10 +71,10 @@ block navbar
                               .huge {{userStory.fibonacci}}
                               div {{userStory.history}}
                         .panel-footer
-                          a(href='./{{userStory._id}}/edit') View Details
+                          a(href='/userStories/{{userStory._id}}/edit') View Details
                             span.pull-left
                           span.pull-right
-                            button.fa.btn(ng-click='deleteUserStory(userStory)', style='background-color: Transparent;')
+                            button.fa.btn(ng-click='deleteUserStory(userStory._id)', style='background-color: Transparent;')
                               span.pull-right
                                 i.fa.fa-times-circle
                           .clearfix
@@ -90,10 +90,10 @@ block navbar
                               .huge {{userStory.fibonacci}}
                               div {{userStory.history}}
                         .panel-footer
-                          a(href='./{{userStory._id}}/edit') View Details
+                          a(href='/userStories/{{userStory._id}}/edit') View Details
                             span.pull-left
                           span.pull-right
-                            button.fa.btn(ng-click='deleteUserStory(userStory)', style='background-color: Transparent;')
+                            button.fa.btn(ng-click='deleteUserStory(userStory._id)', style='background-color: Transparent;')
                               span.pull-right
                                 i.fa.fa-times-circle
                           .clearfix
@@ -109,10 +109,10 @@ block navbar
                               .huge {{userStory.fibonacci}}
                               div {{userStory.history}}
                         .panel-footer
-                          a(href='./{{userStory._id}}/edit') View Details
+                          a(href='/userStories/{{userStory._id}}/edit') View Details
                             span.pull-left
                           span.pull-right
-                            button.fa.btn(ng-click='deleteUserStory(userStory)', style='background-color: Transparent;')
+                            button.fa.btn(ng-click='deleteUserStory(userStory._id)', style='background-color: Transparent;')
                               span.pull-right
                                 i.fa.fa-times-circle
                           .clearfix

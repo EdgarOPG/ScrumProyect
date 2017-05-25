@@ -57,8 +57,11 @@ function create(req, res, next){
 function show(req, res, next){
   logger.debug("SHOW");
   req.session.currentProject = req.params.id;
-  console.log(req.session.currentProject);
-  res.redirect('/projects/' + req.params.id + '/userStories/');
+  if(req.isAuthenticated()){
+        Project.findOne({ _id:req.params.id}, (err, project) =>{
+            res.render('projects/dashboard', {'user':req.user, 'project':project})
+    });
+  }
 }
 
 function addCollaborators(req, res, next) {

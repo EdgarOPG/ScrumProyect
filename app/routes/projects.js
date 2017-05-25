@@ -30,6 +30,4 @@ router.get('/:id', projectController.show);
 /* DELETE para eliminar proyecto*/
 router.delete('/:id', projectController.destroy );
 
-router.use('/:id/userStories', userStories);
-
 module.exports = router;
