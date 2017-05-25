@@ -28,7 +28,7 @@ const userStories = require('./app/routes/userStories');
 const api = require('./app/routes/api');
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(configDB.uri || configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
