@@ -24,17 +24,17 @@ block navbar
           .form-group
             div.skills-table(ng-controller='CtrlCollaborators')
               .form-group
-                .huge Usuarios
+                h3 Usuarios
                 row
-                  table(class="table", style='height:120px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;')
+                  table(class="table", style='height:75px;border:1px solid #ccc; font:5px Arial, Garamond, Serif;overflow:auto;')
                     tbody
                       tr(ng-repeat='user in users')
-                        td 
+                        td
                           div(style='font-size:22px') {{user.nombre}} {{user.primerApellido}} {{user.segundoApellido}}
                         td
-                          input.btn.btn-primary(type='button', ng-click='addCollaborator(user, $index)', value='Agregar')
+                          input.btn.btn-primary.pull-right(type='button', ng-click='addCollaborator(user, $index)', value='Agregar')
               .form-group
-                .huge Colaboradores
+                h3 Colaboradores
                 .row
                   table(class="table" )
                     tbody
