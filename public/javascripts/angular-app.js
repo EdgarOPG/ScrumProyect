@@ -49,13 +49,30 @@ app.controller('CtrlCollaborators', function($scope, $http){
     return collaborators;
   };
 
-  $scope.addCollaborator = function(user) {
-    $scope.collaborators.push(user);
+  //Esta funcion compara los dos arrays en busca de usuarios ya colaborando en este proyecto
+//y de ser asi los remueve para evitar duplicidad
+  function  removeColFromUsers(){
+
+    for (var i = $scope.collaborators.length - 1; i >= 0; i--) {
+      for (var j = $scope.users.length - 1; j >= 0; j--) {
+          if ($scope.collaborators[i]._id==$scope.users[j]._id) {
+            $scope.users.splice(j, 1);
+          }
+        }  
+    } 
+
+
+  };
+
+  $scope.addCollaborator = function(user, index) {
+     $scope.collaborators.push(user);
+    $scope.users.splice(index, 1);
     $scope.postCollaborators();
   }
 
-  $scope.removeCollaborator = function(index){
+  $scope.removeCollaborator = function(collaborator, index){
     $scope.collaborators.splice(index, 1);
+    $scope.users.push(collaborator);
     $scope.postCollaborators();
   }
 
@@ -77,8 +94,12 @@ app.controller('CtrlCollaborators', function($scope, $http){
     .then(function(project){
       $scope.project = project.data;
       $scope.collaborators = $scope.project.equipoDesarrollo;
+      removeColFromUsers();
      console.log($scope.project);
+     
   });
+
+    removeColFromUsers();
 
 });
 
@@ -90,6 +111,14 @@ app.controller('CtrlProjects', function($scope, $http){
     .then(function(userStories){
       $scope.userStories = userStories.data;
      console.log($scope.userStories);
+  });
+
+  $http.get('/api/projects/current')
+    .then(function(project){
+      $scope.project = project.data;
+      $scope.collaborators = $scope.project.equipoDesarrollo;
+     console.log($scope.project);
+     removeColFromUsers();
   });
 
   $scope.deleteUserStory = function(Id) {
